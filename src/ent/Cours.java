@@ -7,6 +7,14 @@ public class Cours {
 	private SuperClass classe;
 	private SuperClass salle;
 	
+	public Cours() {
+		
+	}
+	
+	public Cours(int j, int h) {
+		jour = j;
+		heure =h;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

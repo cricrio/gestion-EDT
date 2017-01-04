@@ -7,12 +7,17 @@ public class SuperClass {
 	public boolean checkDispo(Cours cours){
 		return ! edt.contains(cours);
 	}
-	public boolean ajouterCours(Cours cours){
+	public void  addCours(Cours cours){
+		edt.add(cours);
+	}
+	
+	
+	public boolean addCoursInAllIntervenants(Cours cours){
 		
 		if(cours.getClasse().checkDispo(cours) && cours.getProf().checkDispo(cours) && cours.getSalle().checkDispo(cours)){
-			cours.getClasse().ajouterCours(cours);
-			cours.getProf().ajouterCours(cours);
-			//vcours.getSalle().ajouterCours(cours);
+			cours.getClasse().addCours(cours);
+			cours.getProf().addCours(cours);
+			cours.getSalle().addCours(cours);
 			return true;
 		} else{
 			return false;
