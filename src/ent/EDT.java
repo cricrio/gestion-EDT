@@ -13,13 +13,13 @@ public class EDT {
 	public EDT() {
 
 	}
-	public void initialize() throws Exception{
+	public void initialize(int nbJours,int nbHeures) throws Exception {
 		if(nbHeures==0 || nbJours == 0){
 			throw new Exception("nbHeures or nbJours not set");
 		}
 		coursList = new ArrayList<Cours>();
-		for(int j = 0; j< nbJours; j++){
-			for(int h = 0; h < nbHeures ;h++){
+		for(int j = 1; j< nbJours; j++){
+			for(int h = 1; h < nbHeures ;h++){
 				coursList.add(new Cours(j,h));
 			}
 		}
@@ -33,7 +33,9 @@ public class EDT {
 			).collect(Collectors.toList());
 	}
 	
-	
+	public int countCours(){
+		return coursList.size();
+	}
 	public static int getNbHeures() {
 		return nbHeures;
 	}
@@ -48,6 +50,9 @@ public class EDT {
 
 	public static void setNbJours(int nbJours) {
 		EDT.nbJours = nbJours;
+	}
+	public Cours getCours(int j,int h){
+		return coursList.get(coursList.indexOf(new Cours(j,h)));
 	}
 
 }

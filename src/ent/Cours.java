@@ -24,6 +24,12 @@ public class Cours {
 		return result;
 	}
 	@Override
+	public String toString() {
+		return "Cours [jour=" + jour + ", heure=" + heure + ", prof=" + prof + ", classe=" + classe + ", salle=" + salle
+				+ "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

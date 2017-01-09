@@ -1,26 +1,18 @@
 package ent;
 
+import java.util.ArrayList;
+
 public class SuperClass {
 	EDT edt = new EDT();
 	//return true if dispo
-	
-	public boolean checkDispo(Cours cours){
-		return ! edt.contains(cours);
-	}
-	public void  addCours(Cours cours){
-		edt.add(cours);
+
+	public void initilize(int nbj,int nbh) throws Exception{
+		edt.initialize(nbj,nbh);
 	}
 	
-	
-	public boolean addCoursInAllIntervenants(Cours cours){
-		
-		if(cours.getClasse().checkDispo(cours) && cours.getProf().checkDispo(cours) && cours.getSalle().checkDispo(cours)){
-			cours.getClasse().addCours(cours);
-			cours.getProf().addCours(cours);
-			cours.getSalle().addCours(cours);
-			return true;
-		} else{
-			return false;
-		}
+	protected ArrayList<Cours>getDisponibilite() {
+		return edt.getCrenauxLibre();
 	}
-}
+	protected Cours getCours(int j,int h){
+		return edt.getCours(j, h);
+}}

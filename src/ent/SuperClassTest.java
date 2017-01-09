@@ -21,7 +21,7 @@ public class SuperClassTest {
 		cours.setJour(1);
 		cours.setProf(prof);
 		cours.setSalle(salle);
-		classe.addCoursInAllIntervenants(cours);
+//		classe.addCoursInAllIntervenants(cours);
 	}
 	@Test
 	public void insertCoursTwiceTest(){
@@ -31,7 +31,7 @@ public class SuperClassTest {
 		cours.setJour(1);
 		cours.setProf(prof);
 		cours.setSalle(salle);
-		assertEquals(false, salle.addCoursInAllIntervenants(cours));
+		//assertEquals(false, salle.addCoursInAllIntervenants(cours));
 		
 	}
 
@@ -43,8 +43,8 @@ public class SuperClassTest {
 		cours.setJour(1);
 		cours.setProf(prof);
 		cours.setSalle(salle);
-		assertEquals(false,classe.checkDispo(cours));
-		assertEquals(false,prof.checkDispo(cours));
+		//assertEquals(false,classe.checkDispo(cours));
+//		assertEquals(false,prof.checkDispo(cours));
 	}
 	
 
