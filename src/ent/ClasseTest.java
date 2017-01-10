@@ -31,8 +31,8 @@ public class ClasseTest {
 	
 	@Test
 	public void testGetDisponibiliteMatiere() {
-		cls1.addCours(j, h , m1);
-		cls2.addCours(j1,h1,m1);
+		cls1.placerCours(j, h , m1);
+		cls2.placerCours(j1,h1,m1);
 		int s = cls1.edt.countCours();
 		assertEquals(s-2,cls1.getDisponibilite(m1).size());
 	}
@@ -40,19 +40,19 @@ public class ClasseTest {
 	@Test
 	public void testGetDisponibiliteClasse() {
 		int s = cls1.edt.countCours();
-		cls1.addCours(j,h,m1);
+		cls1.placerCours(j,h,m1);
 		assertEquals(s-1,cls1.getDisponibilite().size());
 	}
 	@Test
 	public void testGetDisponibiliteProfesseur() {
 		int s = cls1.edt.countCours();
-		cls1.addCours(j,h,m1);
+		cls1.placerCours(j,h,m1);
 		assertEquals(s-1,m1.getProfesseur().getDisponibilite().size());
 	}
 
 	@Test
 	public void testAddCours() {
-		cls1.addCours(j,h,m1);
+		cls1.placerCours(j,h,m1);
 		assertEquals(cls1.getCours(j, h).getProf(),p1);
 	}
 
