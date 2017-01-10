@@ -15,6 +15,14 @@ public class Matiere {
 	public void setProfesseur(Professeur professeur) {
 		this.professeur = professeur;
 	}
+	public void decremanter(){
+		nbAPlacer--;
+	}
+	
+	public boolean toutLesCoursPlacer(){
+		return (nbAPlacer  == 0); 
+	}
+	
 	@Override
 	public String toString() {
 		return "Matiere [intitule=" + intitule + ", nbAPlacer=" + nbAPlacer + ", professeur=" + professeur + "]";

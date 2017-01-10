@@ -17,9 +17,9 @@ public class ClasseTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		cls1.initilize(4, 4);
-		cls2.initilize(4, 4);
-		p1.initilize(4, 4);
+		cls1.initialize(4, 4);
+		cls2.initialize(4, 4);
+		p1.initialize(4, 4);
 		m1.setProfesseur(p1);
 		}
 

@@ -3,9 +3,9 @@ package ent;
 import java.util.ArrayList;
 
 public class Generator {
-	ArrayList<Classe> classes;
-	ArrayList<Salle> salles;
-	ArrayList<Professeur> professeurs;
+	ArrayList<Classe> classes = new ArrayList<Classe>();
+	ArrayList<Salle> salles = new ArrayList<Salle>();
+	ArrayList<Professeur> professeurs = new ArrayList<Professeur>();
 	
 	public void initialize(int nbJours,int nbHeures ) throws Exception{
 		Professeur profFrancais = new Professeur();
@@ -19,6 +19,7 @@ public class Generator {
 		classes.add(new Classe());
 		classes.add(new Classe());
 		classes.add(new Classe());
+
 		
 		Matiere francais = new Matiere("francais", 3);
 		Matiere math = new Matiere("math", 3);
@@ -29,13 +30,26 @@ public class Generator {
 		math.setProfesseur(profMath);
 		
 		for(Classe classe : classes){
-			classe.initilize(nbJours, nbHeures);
+			classe.initialize(nbJours, nbHeures,classes.size());
 			classe.ajouterMatiere(math);
 			classe.ajouterMatiere(anglais);
 			classe.ajouterMatiere(francais);
 		}
 		for(Professeur professeur : professeurs){
-			professeur.initilize(nbJours, nbHeures);
+			professeur.initialize(nbJours, nbHeures);
+		}
+	}
+	private boolean finish(){
+		//System.out.println("FINISH :: "+ classes.get(0).nbClasse);
+		return classes.get(0).nbClasse == 0;
+	}
+	public void placerCours(){
+		while(! finish()){
+		for(Classe classe : classes){
+			if(! classe.toutLesCoursPlacer()){
+				classe.placerRandomCours();
+			}
+		}
 		}
 	}
 	

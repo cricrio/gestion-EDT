@@ -6,7 +6,7 @@ public class SuperClass {
 	EDT edt = new EDT();
 	//return true if dispo
 
-	public void initilize(int nbj,int nbh) throws Exception{
+	public void initialize(int nbj,int nbh) throws Exception{
 		edt.initialize(nbj,nbh);
 	}
 	
