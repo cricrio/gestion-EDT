@@ -12,9 +12,9 @@ public class Generator {
 		Professeur profMath = new Professeur();
 		Professeur profAnglais = new Professeur();
 		
-		Classe classe1 = new Classe();
-		Classe classe2 = new Classe();
-		Classe classe3 = new Classe();
+		classes.add(new Classe());
+		classes.add(new Classe());
+		classes.add(new Classe());
 		
 		Matiere francais = new Matiere("francais", 3);
 		Matiere math = new Matiere("math", 3);
@@ -24,6 +24,13 @@ public class Generator {
 		anglais.setProfesseur(profAnglais);
 		math.setProfesseur(profMath);
 		
+		for(Classe classe : classes){
+			classe.ajouterMatiere(math);
+			classe.ajouterMatiere(anglais);
+			classe.ajouterMatiere(francais);
+
+
+		}
 		
 		 
 	}
