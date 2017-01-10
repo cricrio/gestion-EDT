@@ -28,12 +28,12 @@ public class Classe  extends SuperClass{
 	
 
 	
-	public void addCours(Cours cours,Matiere matiere){
+	public void placerCours(Cours cours,Matiere matiere){
 		cours.setProf(matiere.getProfesseur());
 		matiere.getProfesseur().getCours(cours.getJour(),cours.getHeure()).setClasse(this);
 		
 	}
-	public void addCours(int j,int h,Matiere matiere){
+	public void placerCours(int j,int h,Matiere matiere){
 		this.getCours(j, h).setProf(matiere.getProfesseur());
 		matiere.getProfesseur().getCours(j, h).setClasse(this);
 		
