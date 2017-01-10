@@ -6,12 +6,13 @@ public class Classe  extends SuperClass{
 	private ArrayList<Matiere> matieresAPlacer;
 	
 	
-	
+	public void ajouterMatiere(Matiere matiere){
+		matieresAPlacer.add(matiere);
+	}
 	
 	public ArrayList<Cours> getDisponibilite(Matiere matiere){
 		int pos=0;
 		ArrayList<Cours> disponibiliteProf = matiere.getProfesseur().getDisponibilite();
-		//ArrayList<Cours> disponibiliteClasse = getDisponibilite();
 		ArrayList<Cours> disponibiliteBoth = new ArrayList<Cours>();
 		
 		for(Cours cours: disponibiliteProf){
