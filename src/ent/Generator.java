@@ -29,7 +29,7 @@ public class Generator {
 			classe.ajouterMatiere(anglais);
 			classe.ajouterMatiere(francais);
 		}
-		
 	}
+	
 	
 }
