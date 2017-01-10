@@ -21,7 +21,7 @@ public class Classe  extends SuperClass{
 	}
 	public void placerRandomCours(){
 		Matiere matiere = getRandomMatiere();
-		System.out.println(getDisponibilite(matiere).size());
+//		System.out.println(matiere.toutLesCoursPlacer());
 		Cours cours = getDisponibilite(matiere).get(0);
 		placerCours(cours, matiere);
 		//System.out.println(matiere);

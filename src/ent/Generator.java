@@ -40,7 +40,7 @@ public class Generator {
 		}
 	}
 	private boolean finish(){
-		//System.out.println("FINISH :: "+ classes.get(0).nbClasse);
+		System.out.println("FINISH :: "+ classes.get(0).nbClasse);
 		return classes.get(0).nbClasse == 0;
 	}
 	public void placerCours(){

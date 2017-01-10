@@ -20,7 +20,7 @@ public class Matiere {
 	}
 	
 	public boolean toutLesCoursPlacer(){
-		return (nbAPlacer  == 0); 
+		return (nbAPlacer  < 0); 
 	}
 	
 	@Override
