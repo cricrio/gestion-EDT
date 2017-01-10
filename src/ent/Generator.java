@@ -28,11 +28,8 @@ public class Generator {
 			classe.ajouterMatiere(math);
 			classe.ajouterMatiere(anglais);
 			classe.ajouterMatiere(francais);
-
-
 		}
 		
-		 
 	}
 	
 }
