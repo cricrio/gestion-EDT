@@ -30,6 +30,7 @@ public class Classe  extends SuperClass{
 	
 	public void addCours(Cours cours,Matiere matiere){
 		cours.setProf(matiere.getProfesseur());
+		matiere.getProfesseur().getCours(cours.getJour(),cours.getHeure()).setClasse(this);
 		
 	}
 	public void addCours(int j,int h,Matiere matiere){
