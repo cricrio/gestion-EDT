@@ -1,8 +1,9 @@
 package ent;
 
 public class Cours {
-	private int jour;
-	private int heure;
+	private int jourDebut;
+	private int heureDebut;
+	private int duree;
 	private SuperClass prof;
 	private SuperClass classe;
 	private SuperClass salle;
@@ -11,21 +12,22 @@ public class Cours {
 		
 	}
 	
-	public Cours(int j, int h) {
-		jour = j;
-		heure =h;
+	public Cours(int j, int h,int d) {
+		jourDebut = j;
+		heureDebut = h;
+		duree = d;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + getHeure();
+		result = prime * result + getHeureDebut();
 		result = prime * result + getJour();
 		return result;
 	}
 	@Override
 	public String toString() {
-		return "Cours [jour=" + jour + ", heure=" + heure + ", prof=" + prof + ", classe=" + classe + ", salle=" + salle
+		return "Cours [jour=" + jourDebut + ", heure=" + heureDebut + ", prof=" + prof + ", classe=" + classe + ", salle=" + salle
 				+ "]";
 	}
 
@@ -38,23 +40,26 @@ public class Cours {
 		if (getClass() != obj.getClass())
 			return false;
 		Cours other = (Cours) obj;
-		if (getHeure() != other.getHeure())
+		if (getHeureDebut() != other.getHeureDebut())
 			return false;
 		if (getJour() != other.getJour())
 			return false;
 		return true;
 	}
 	public int getJour() {
-		return jour;
+		return jourDebut;
 	}
 	public void setJour(int jour) {
-		this.jour = jour;
+		this.jourDebut = jour;
 	}
-	public int getHeure() {
-		return heure;
+	public int getHeureDebut() {
+		return heureDebut;
 	}
-	public void setHeure(int heure) {
-		this.heure = heure;
+	public void setHeureDebut(int heure) {
+		this.heureDebut = heure;
+	}
+	public int getHeureFin() {
+		return heureDebut + duree;
 	}
 	public SuperClass getProf() {
 		return prof;
@@ -73,5 +78,13 @@ public class Cours {
 	}
 	public void setSalle(SuperClass salle) {
 		this.salle = salle;
+	}
+
+	public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
 	}
 }

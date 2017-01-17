@@ -17,7 +17,7 @@ public class SuperClassTest {
 		classe = new SuperClass();
 		Cours cours = new Cours();
 		cours.setClasse(classe);
-		cours.setHeure(0);
+		cours.setHeureDebut(0);
 		cours.setJour(1);
 		cours.setProf(prof);
 		cours.setSalle(salle);
@@ -27,7 +27,7 @@ public class SuperClassTest {
 	public void insertCoursTwiceTest(){
 		Cours cours = new Cours();
 		cours.setClasse(classe);
-		cours.setHeure(0);
+		cours.setHeureDebut(0);
 		cours.setJour(1);
 		cours.setProf(prof);
 		cours.setSalle(salle);
@@ -39,7 +39,7 @@ public class SuperClassTest {
 	public void findDiponibilityTest() {
 		Cours cours = new Cours();
 		cours.setClasse(classe);
-		cours.setHeure(0);
+		cours.setHeureDebut(0);
 		cours.setJour(1);
 		cours.setProf(prof);
 		cours.setSalle(salle);
