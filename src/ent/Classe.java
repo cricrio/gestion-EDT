@@ -3,75 +3,105 @@ package ent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Classe  extends SuperClass{
+public class Classe extends SuperClass {
 	private ArrayList<Matiere> matieresAPlacer = new ArrayList<Matiere>();
 	public static int nbClasse;
-	
-	public void initialize(int nbj,int nbh, int nbClasse) throws Exception{
+
+	public void initialize(int nbj, int nbh, int nbClasse) throws Exception {
 		this.nbClasse = nbClasse;
 		initialize(nbj, nbh);
 	}
-	
-	public void ajouterMatiere(Matiere matiere){
-		//effectuer une copie de la matiere pour quel ne sois pas partager entre les différentes places
+
+	public void ajouterMatiere(Matiere matiere) {
+		// effectuer une copie de la matiere pour quel ne sois pas partager
+		// entre les différentes places
 		Matiere m = new Matiere(matiere.getIntitule(), matiere.getNbHeure());
 		m.setProfesseur(matiere.getProfesseur());
 		matieresAPlacer.add(m);
 	}
-	
-	private Matiere getRandomMatiere(){
-		int index = (int) (Math.random()*matieresAPlacer.size());
+
+	private Matiere getRandomMatiere() {
+		int index = (int) (Math.random() * matieresAPlacer.size());
 		return matieresAPlacer.get(index);
 	}
-	public void placerRandomCours(){
+
+	public void placerRandomCours() throws Exception {
 		Matiere matiere = getRandomMatiere();
-//		System.out.println(matiere.toutLesCoursPlacer());
-		Cours cours = getDisponibilite(matiere).get(0);
-		placerCours(cours, matiere);
-		//System.out.println(matiere);
+		Cours cours = getCours(matiere);
+		placerCoursInAll(cours, matiere);
 	}
-	public boolean toutLesCoursPlacer(){
-		System.out.println("matieres à placer :"+matieresAPlacer.isEmpty());
+
+	private Cours getCours(Matiere matiere) throws Exception {
+		ArrayList<Disponibilite> disponibilites = getDisponibilite(matiere);
+		Disponibilite disponibilite;
+		Cours cours = null;
+		boolean notFound= true;
+		int duree = 1;
+		int index = 0;
+		do {
+			disponibilite = disponibilites.get(index);
+			if (disponibilite.getDuree() >= duree) {
+				cours = new Cours(disponibilite.getJour(), disponibilite.getHeureDebut(), duree);
+				notFound = false;
+			}
+			index++;
+		} while (notFound || index < disponibilites.size());
+		if (cours == null) {
+			throw new Exception("pas de disponilité de taille suffisante");
+		} else {
+			return cours;
+		}
+	}
+
+	public boolean toutLesCoursPlacer() {
+		System.out.println("matieres à placer :" + matieresAPlacer.isEmpty());
 		return matieresAPlacer.isEmpty();
 	}
-	
-	public ArrayList<Cours> getDisponibilite(Matiere matiere){
-		ArrayList<Cours> disponibiliteProf = matiere.getProfesseur().getDisponibilite();
-		ArrayList<Cours> disponibiliteBoth = new ArrayList<Cours>();
-		
-		for(Cours cours: disponibiliteProf){
-		
-			Cours c = this.getCours(cours.getJour(), cours.getHeure());
-			
-			if(c.getProf() == null){
-				disponibiliteBoth.add(c);
-			}
-		}
-		return disponibiliteBoth;	
-	}
-	
 
 	
-	public void placerCours(Cours cours,Matiere matiere){
+	
+	public ArrayList<Disponibilite> getDisponibilite(Matiere matiere) throws Exception {
+		ArrayList<Disponibilite> disponibiliteProf = matiere.getProfesseur().getDisponibilite();
+		ArrayList<Disponibilite> disponibiliteBoth = new ArrayList<Disponibilite>();
+
+		for (Disponibilite disponibiliteP : disponibiliteProf) {
+			for (Disponibilite disponibiliteC : getDisponibilite()) {
+				try {
+					disponibiliteBoth.add(disponibiliteC.getShareDiponibilte(disponibiliteP));
+				} catch (Exception e) {
+//					e.printStackTrace();
+				}
+			}
+		}
+		if (disponibiliteBoth.isEmpty()) {
+			throw new Exception("Pas de disponibilite commune");
+		}
+		return disponibiliteBoth;
+	}
+
+	
+	public void placerCoursInAll(Cours cours, Matiere matiere) {
 		cours.setProf(matiere.getProfesseur());
-		matiere.getProfesseur().getCours(cours.getJour(),cours.getHeure()).setClasse(this);
+		cours.setClasse(this);
+		placerCours(cours);
+		matiere.getProfesseur().placerCours(cours);
 		matiere.decremanter();
-		if(matiere.toutLesCoursPlacer()){
+		if (matiere.toutLesCoursPlacer()) {
 			matieresAPlacer.remove(matiere);
-			if(matieresAPlacer.isEmpty()){
+			if (matieresAPlacer.isEmpty()) {
 				nbClasse--;
 			}
 		}
 	}
-	public void placerCours(int j,int h,Matiere matiere){
+
+	public void placerCours(int j, int h, Matiere matiere) {
 		this.getCours(j, h).setProf(matiere.getProfesseur());
 		matiere.getProfesseur().getCours(j, h).setClasse(this);
 		matiere.decremanter();
-		if(matiere.toutLesCoursPlacer()){
+		if (matiere.toutLesCoursPlacer()) {
 			matieresAPlacer.remove(matiere);
 		}
-		
-	}
 
+	}
 
 }
