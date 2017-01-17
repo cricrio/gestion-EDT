@@ -39,12 +39,11 @@ public class Generator {
 			professeur.initialize(nbJours, nbHeures);
 		}
 	}
-	private boolean finish(){
-		System.out.println("FINISH :: "+ classes.get(0).nbClasse);
+	private boolean isFinish(){
 		return classes.get(0).nbClasse == 0;
 	}
 	public void placerCours(){
-		while(! finish()){
+		while(! isFinish()){
 		for(Classe classe : classes){
 			if(! classe.toutLesCoursPlacer()){
 				classe.placerRandomCours();

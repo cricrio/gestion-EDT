@@ -1,6 +1,7 @@
 package ent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Classe  extends SuperClass{
 	private ArrayList<Matiere> matieresAPlacer = new ArrayList<Matiere>();
@@ -12,7 +13,10 @@ public class Classe  extends SuperClass{
 	}
 	
 	public void ajouterMatiere(Matiere matiere){
-		matieresAPlacer.add(matiere);
+		//effectuer une copie de la matiere pour quel ne sois pas partager entre les différentes places
+		Matiere m = new Matiere(matiere.getIntitule(), matiere.getNbHeure());
+		m.setProfesseur(matiere.getProfesseur());
+		matieresAPlacer.add(m);
 	}
 	
 	private Matiere getRandomMatiere(){
@@ -27,6 +31,7 @@ public class Classe  extends SuperClass{
 		//System.out.println(matiere);
 	}
 	public boolean toutLesCoursPlacer(){
+		System.out.println("matieres à placer :"+matieresAPlacer.isEmpty());
 		return matieresAPlacer.isEmpty();
 	}
 	
@@ -54,7 +59,7 @@ public class Classe  extends SuperClass{
 		if(matiere.toutLesCoursPlacer()){
 			matieresAPlacer.remove(matiere);
 			if(matieresAPlacer.isEmpty()){
-				nbClasse --;
+				nbClasse--;
 			}
 		}
 	}
@@ -68,11 +73,5 @@ public class Classe  extends SuperClass{
 		
 	}
 
-	public ArrayList<Matiere> getMatieresAPlacer() {
-		return matieresAPlacer;
-	}
 
-	public void setMatieresAPlacer(ArrayList<Matiere> matieresAPlacer) {
-		this.matieresAPlacer = matieresAPlacer;
-	}
 }
