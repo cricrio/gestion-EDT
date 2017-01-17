@@ -32,6 +32,13 @@ public class EDT {
 			&& c.getSalle() ==null
 			).collect(Collectors.toList());
 	}
+	public Cours getCours(int j,int h){
+		return coursList.get(coursList.indexOf(new Cours(j,h)));
+	}
+	public Cours getCours(Cours c){
+		return coursList.get(coursList.indexOf(c));
+	}
+
 	
 	public int countCours(){
 		return coursList.size();
@@ -51,8 +58,5 @@ public class EDT {
 	public static void setNbJours(int nbJours) {
 		EDT.nbJours = nbJours;
 	}
-	public Cours getCours(int j,int h){
-		return coursList.get(coursList.indexOf(new Cours(j,h)));
-	}
-
+	
 }
