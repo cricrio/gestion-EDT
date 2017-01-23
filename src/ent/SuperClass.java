@@ -3,8 +3,14 @@ package ent;
 import java.util.ArrayList;
 
 public class SuperClass {
+	protected String nom;
+	@Override
+	public String toString() {
+		return "SuperClass [nom=" + nom + "]";
+	}
+
 	EDT edt = new EDT();
-	// return true if dispo
+	
 
 	public void initialize(int nbj, int nbh) throws Exception {
 		edt.initialize(nbj, nbh);
@@ -14,6 +20,9 @@ public class SuperClass {
 	}
 	protected ArrayList<Disponibilite> getDisponibilite() {
 		return edt.getDisponibilites();
+	}
+	protected ArrayList<Cours>getAllCours(){
+		return edt.coursList;
 	}
 
 	protected Cours getCours(int j, int h) {

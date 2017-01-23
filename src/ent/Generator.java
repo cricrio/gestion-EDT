@@ -8,17 +8,17 @@ public class Generator {
 	ArrayList<Professeur> professeurs = new ArrayList<Professeur>();
 
 	public void initialize(int nbJours, int nbHeures) throws Exception {
-		Professeur profFrancais = new Professeur();
-		Professeur profMath = new Professeur();
-		Professeur profAnglais = new Professeur();
+		Professeur profFrancais = new Professeur("franceP");
+		Professeur profMath = new Professeur("mathP");
+		Professeur profAnglais = new Professeur("angilasP");
 
 		professeurs.add(profFrancais);
 		professeurs.add(profAnglais);
 		professeurs.add(profMath);
 
-		classes.add(new Classe());
-		classes.add(new Classe());
-		classes.add(new Classe());
+		classes.add(new Classe("classe1"));
+		classes.add(new Classe("classe2"));
+		classes.add(new Classe("classe3"));
 
 		Matiere francais = new Matiere("francais", 3);
 		Matiere math = new Matiere("math", 3);
@@ -53,6 +53,38 @@ public class Generator {
 				}
 			}
 		}
+		for(Classe classe : classes){
+			System.out.println(classe.getAllCours());
+		}
+	}
+	
+	
+	
+	
+	public boolean deuxCoursMemeEntiteMemeHeure(){
+		for(Professeur professeur : professeurs){
+			for(Cours coursP : professeur.getAllCours()){
+				for(Classe classe : classes){
+					if(!classe.equals(coursP.getClasse())){
+						if(classe.getAllCours().contains(coursP)){
+							return true;
+						}
+					}
+				}
+			}
+		}
+		for(Classe classe : classes){
+			for(Cours coursC : classe.getAllCours()){
+				for(Professeur professeur : professeurs){
+					if(!professeur.equals(coursC.getClasse())){
+						if(classe.getAllCours().contains(coursC)){
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 }

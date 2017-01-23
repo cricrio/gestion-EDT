@@ -1,9 +1,12 @@
-package ent;
+package io.vertx.example.web.rest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ent.Cours;
+import ent.SuperClass;
 
 public class SuperClassTest {
 	SuperClass prof;

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class EDT {
 	private ArrayList<Disponibilite> disponibilites = new ArrayList<Disponibilite>();
-	ArrayList<Cours> coursList;
+	ArrayList<Cours> coursList = new ArrayList<Cours>();
 	private static int nbJours = 0;
 	private static int nbHeures = 0;
 
@@ -24,7 +24,7 @@ public class EDT {
 			disponibilite = new Disponibilite();
 			disponibilite.setJour(i);
 			disponibilite.setHeureDebut(0);
-			disponibilite.setHeureFin(getNbHeures());
+			disponibilite.setHeureFin(getNbHeures()-1);
 			// insertion
 			getDisponibilites().add(disponibilite);
 		}
@@ -63,7 +63,7 @@ public class EDT {
 
 			}
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}
@@ -108,5 +108,12 @@ public class EDT {
 	public void setDisponibilites(ArrayList<Disponibilite> disponibilites) {
 		this.disponibilites = disponibilites;
 	}
-
+	@Override
+	public String toString(){
+		String liste ="";
+		for(Cours c : coursList){
+			liste +=c;
+		}
+		return liste;
+	}
 }

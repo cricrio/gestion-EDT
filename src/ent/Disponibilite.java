@@ -10,11 +10,11 @@ public class Disponibilite {
 		Disponibilite result = new Disponibilite();
 		if (source.getJour() != getJour()) {
 			throw new Exception("Pas sur le meme jour");
-		} else if (source.getHeureFin() < getHeureDebut() || source.getHeureDebut() < source.getHeureFin()) {
+		} else if (source.getHeureFin() < getHeureDebut() || source.getHeureDebut() > getHeureFin()) {
 			throw new Exception("Non contigu");
 		}
 		int heureDebut = source.getHeureDebut() > getHeureDebut() ? source.getHeureDebut() : getHeureDebut();
-		int heureFin = source.getHeureFin() > getHeureFin() ? source.getHeureFin() : getHeureFin();
+		int heureFin = source.getHeureFin() < getHeureFin() ? source.getHeureFin() : getHeureFin();
 		result.setHeureDebut(heureDebut);
 		result.setHeureFin(heureFin);
 		result.setJour(source.getJour());

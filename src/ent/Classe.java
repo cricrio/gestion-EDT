@@ -6,7 +6,10 @@ import java.util.HashMap;
 public class Classe extends SuperClass {
 	private ArrayList<Matiere> matieresAPlacer = new ArrayList<Matiere>();
 	public static int nbClasse;
-
+	
+	public Classe(String nom){
+		this.nom = nom;
+	}
 	public void initialize(int nbj, int nbh, int nbClasse) throws Exception {
 		this.nbClasse = nbClasse;
 		initialize(nbj, nbh);
@@ -49,6 +52,7 @@ public class Classe extends SuperClass {
 		if (cours == null) {
 			throw new Exception("pas de disponilité de taille suffisante");
 		} else {
+			System.out.println(cours);
 			return cours;
 		}
 	}
@@ -69,7 +73,7 @@ public class Classe extends SuperClass {
 				try {
 					disponibiliteBoth.add(disponibiliteC.getShareDiponibilte(disponibiliteP));
 				} catch (Exception e) {
-//					e.printStackTrace();
+//				e.printStackTrace();
 				}
 			}
 		}

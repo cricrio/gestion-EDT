@@ -1,9 +1,13 @@
-package ent;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ent.Classe;
+import ent.Matiere;
+import ent.Professeur;
 
 public class ClasseTest {
 	int h = 3;
