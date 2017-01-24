@@ -1,12 +1,10 @@
 package ent;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.stream.Collectors;
 
 public class EDT {
 	private ArrayList<Disponibilite> disponibilites = new ArrayList<Disponibilite>();
-	ArrayList<Cours> coursList = new ArrayList<Cours>();
+	private ArrayList<Cours> coursList = new ArrayList<Cours>();
 	private static int nbJours = 0;
 	private static int nbHeures = 0;
 
@@ -44,9 +42,9 @@ public class EDT {
 		try {
 			Disponibilite disponibilite = getDisponibilite(cours);
 			if (disponibilite.getHeureDebut() == cours.getHeureDebut()) {
-				disponibilite.avancer(cours.getDuree());
+				disponibilite.setHeureDebut(cours.getHeureFin());;
 			} else if (disponibilite.getHeureFin() == cours.getHeureDebut()) {
-				disponibilite.diminuer(cours.getDuree());
+				disponibilite.setHeureFin(cours.getHeureDebut());;
 			} else {
 				Disponibilite d1 = new Disponibilite();
 				d1.setHeureDebut(disponibilite.getHeureDebut());
@@ -69,20 +67,20 @@ public class EDT {
 	}
 
 	public void placerCours(Cours cours) {
-		coursList.add(cours);
+		getCoursList().add(cours);
 		changeDisponibilite(cours);
 	}
 
 	public Cours getCours(int j, int h) {
-		return coursList.get(coursList.indexOf(new Cours(j, h, 1)));
+		return getCoursList().get(getCoursList().indexOf(new Cours(j, h, 1)));
 	}
 
 	public Cours getCours(Cours c) {
-		return coursList.get(coursList.indexOf(c));
+		return getCoursList().get(getCoursList().indexOf(c));
 	}
 
 	public int countCours() {
-		return coursList.size();
+		return getCoursList().size();
 	}
 
 	public static int getNbHeures() {
@@ -111,9 +109,34 @@ public class EDT {
 	@Override
 	public String toString(){
 		String liste ="";
-		for(Cours c : coursList){
+		for(Cours c : getCoursList()){
 			liste +=c;
 		}
 		return liste;
+	}
+	public boolean checkIntegrite() {
+		int count = 0;
+		for (Cours cours : getCoursList()) {
+			count = 0;
+			for (Cours cours1 : getCoursList()) {
+				if (cours.equals(cours1)) {
+					count++;
+					System.out.println(count);
+				}
+				if (count > 1) {
+					return false;
+				}
+			}
+		}
+		System.out.println("end");
+		return true;
+	}
+
+	public ArrayList<Cours> getCoursList() {
+		return coursList;
+	}
+
+	public void setCoursList(ArrayList<Cours> coursList) {
+		this.coursList = coursList;
 	}
 }

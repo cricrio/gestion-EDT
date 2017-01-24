@@ -28,7 +28,7 @@ public class Disponibilite {
 		heureDebut =+ duree;
 	}
 	public void diminuer(int duree){
-		heureFin =- duree;
+		heureFin = heureFin - duree;
 	}
 	public int getHeureDebut() {
 		return heureDebut;

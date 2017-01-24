@@ -3,22 +3,22 @@ package ent;
 import java.util.ArrayList;
 
 public class Generator {
-	ArrayList<Classe> classes = new ArrayList<Classe>();
-	ArrayList<Salle> salles = new ArrayList<Salle>();
-	ArrayList<Professeur> professeurs = new ArrayList<Professeur>();
+	private ArrayList<Classe> classes = new ArrayList<Classe>();
+	private ArrayList<Salle> salles = new ArrayList<Salle>();
+	private ArrayList<Professeur> professeurs = new ArrayList<Professeur>();
 
 	public void initialize(int nbJours, int nbHeures) throws Exception {
 		Professeur profFrancais = new Professeur("franceP");
 		Professeur profMath = new Professeur("mathP");
 		Professeur profAnglais = new Professeur("angilasP");
 
-		professeurs.add(profFrancais);
-		professeurs.add(profAnglais);
-		professeurs.add(profMath);
+		getProfesseurs().add(profFrancais);
+		getProfesseurs().add(profAnglais);
+		getProfesseurs().add(profMath);
 
-		classes.add(new Classe("classe1"));
-		classes.add(new Classe("classe2"));
-		classes.add(new Classe("classe3"));
+		getClasses().add(new Classe("classe1"));
+		getClasses().add(new Classe("classe2"));
+		getClasses().add(new Classe("classe3"));
 
 		Matiere francais = new Matiere("francais", 3);
 		Matiere math = new Matiere("math", 3);
@@ -28,63 +28,58 @@ public class Generator {
 		anglais.setProfesseur(profAnglais);
 		math.setProfesseur(profMath);
 
-		for (Classe classe : classes) {
-			classe.initialize(nbJours, nbHeures, classes.size());
+		for (Classe classe : getClasses()) {
+			classe.initialize(nbJours, nbHeures, getClasses().size());
 			classe.ajouterMatiere(math);
 			classe.ajouterMatiere(anglais);
 			classe.ajouterMatiere(francais);
 		}
-		for (Professeur professeur : professeurs) {
+		for (Professeur professeur : getProfesseurs()) {
 			professeur.initialize(nbJours, nbHeures);
 		}
 	}
 
 	private boolean isFinish() {
-		return classes.get(0).nbClasse == 0;
+		return getClasses().get(0).nbClasse == 0;
 	}
 
 	public void placerCours() throws Exception {
 		int i = 0;
 		while (!isFinish()) {
-			for (Classe classe : classes) {
+			for (Classe classe : getClasses()) {
 				if (!classe.toutLesCoursPlacer()) {
 					System.out.println(i++);
 					classe.placerRandomCours();
 				}
 			}
 		}
-		for(Classe classe : classes){
+		for(Classe classe : getClasses()){
 			System.out.println(classe.getAllCours());
 		}
 	}
-	
-	
-	
-	
-	public boolean deuxCoursMemeEntiteMemeHeure(){
-		for(Professeur professeur : professeurs){
-			for(Cours coursP : professeur.getAllCours()){
-				for(Classe classe : classes){
-					if(!classe.equals(coursP.getClasse())){
-						if(classe.getAllCours().contains(coursP)){
-							return true;
-						}
-					}
-				}
-			}
-		}
-		for(Classe classe : classes){
-			for(Cours coursC : classe.getAllCours()){
-				for(Professeur professeur : professeurs){
-					if(!professeur.equals(coursC.getClasse())){
-						if(classe.getAllCours().contains(coursC)){
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
+
+	public ArrayList<Classe> getClasses() {
+		return classes;
 	}
 
+	public void setClasses(ArrayList<Classe> classes) {
+		this.classes = classes;
+	}
+
+	public ArrayList<Salle> getSalles() {
+		return salles;
+	}
+
+	public void setSalles(ArrayList<Salle> salles) {
+		this.salles = salles;
+	}
+
+	public ArrayList<Professeur> getProfesseurs() {
+		return professeurs;
+	}
+
+	public void setProfesseurs(ArrayList<Professeur> professeurs) {
+		this.professeurs = professeurs;
+	}
+	
 }

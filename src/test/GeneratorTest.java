@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import ent.Classe;
 import ent.Generator;
+import ent.Professeur;
 
 public class GeneratorTest {
 	Generator generator;
@@ -23,8 +25,18 @@ public class GeneratorTest {
 	
 
 	@Test
-	public void test() {
-		assertEquals(false, generator.deuxCoursMemeEntiteMemeHeure());
+	public void integriteProfesseurs() {
+		for(Professeur p : generator.getProfesseurs()){
+			assertEquals(true, p.checkIntegrite());
+		}
 	}
+	@Test
+	public void integriteClasses() {
+		for(Classe c : generator.getClasses()){
+			assertEquals(true, c.checkIntegrite());
+		}
+	}
+	
+	
 
 }
