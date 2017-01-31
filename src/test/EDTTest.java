@@ -1,9 +1,12 @@
-package ent;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ent.Cours;
+import ent.EDT;
 
 public class EDTTest {
 	EDT edt;

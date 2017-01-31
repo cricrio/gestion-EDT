@@ -3,13 +3,17 @@ package ent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import exception.AucuneSalleLibreException;
+
 public class Classe extends SuperClass {
 	private ArrayList<Matiere> matieresAPlacer = new ArrayList<Matiere>();
+	public static ArrayList<Salle> salles;
 	public static int nbClasse;
-	
-	public Classe(String nom){
+
+	public Classe(String nom) {
 		this.nom = nom;
 	}
+
 	public void initialize(int nbj, int nbh, int nbClasse) throws Exception {
 		this.nbClasse = nbClasse;
 		initialize(nbj, nbh);
@@ -35,58 +39,31 @@ public class Classe extends SuperClass {
 	}
 
 	private Cours getCours(Matiere matiere) throws Exception {
-		ArrayList<Disponibilite> disponibilites = getDisponibilite(matiere);
-		Disponibilite disponibilite;
-		Cours cours = null;
-		boolean notFound= true;
+		boolean notFound = true;
 		int duree = 1;
 		int index = 0;
-		do {
-			disponibilite = disponibilites.get(index);
-			if (disponibilite.getDuree() >= duree) {
-				cours = new Cours(disponibilite.getJour(), disponibilite.getHeureDebut(), duree);
-				notFound = false;
-			}
-			index++;
-		} while (notFound || index < disponibilites.size());
-		if (cours == null) {
-			throw new Exception("pas de disponilité de taille suffisante");
-		} else {
-			System.out.println(cours);
-			return cours;
-		}
+		ArrayList<Disponibilite> disponibilites = getDisponibilite(matiere);
+		SalleAndDispo salleAndDispo = findSalleLibre(disponibilites, duree);
+		Cours cours = new Cours(salleAndDispo.dispos.getJour(),salleAndDispo.dispos.getHeureDebut(),duree);
+		cours.setSalle(salleAndDispo.salle);
+		return cours;
 	}
 
 	public boolean toutLesCoursPlacer() {
-		System.out.println("matieres à placer :" + matieresAPlacer.isEmpty());
+		System.out.println(nom + " matieres à placer :" + matieresAPlacer.size());
 		return matieresAPlacer.isEmpty();
 	}
 
-	
-	
 	public ArrayList<Disponibilite> getDisponibilite(Matiere matiere) throws Exception {
 		ArrayList<Disponibilite> disponibiliteProf = matiere.getProfesseur().getDisponibilite();
-		ArrayList<Disponibilite> disponibiliteBoth = new ArrayList<Disponibilite>();
-
-		for (Disponibilite disponibiliteP : disponibiliteProf) {
-			for (Disponibilite disponibiliteC : getDisponibilite()) {
-				try {
-					disponibiliteBoth.add(disponibiliteC.getShareDiponibilte(disponibiliteP));
-				} catch (Exception e) {
-//				e.printStackTrace();
-				}
-			}
-		}
-		if (disponibiliteBoth.isEmpty()) {
-			throw new Exception("Pas de disponibilite commune");
-		}
-		return disponibiliteBoth;
+		return super.getSharedDisponibilite(disponibiliteProf);
 	}
-
 	
+
 	public void placerCoursInAll(Cours cours, Matiere matiere) {
 		cours.setProf(matiere.getProfesseur());
 		cours.setClasse(this);
+		cours.getSalle().placerCours(cours);
 		placerCours(cours);
 		matiere.getProfesseur().placerCours(cours);
 		matiere.decremanter();
@@ -106,6 +83,26 @@ public class Classe extends SuperClass {
 			matieresAPlacer.remove(matiere);
 		}
 
+	}
+
+	public SalleAndDispo findSalleLibre(ArrayList<Disponibilite> dispoClasseProf, int duree) throws AucuneSalleLibreException {
+		 for (Salle salle : salles) {
+			try {
+				ArrayList<Disponibilite> dispoSalle = salle.getSharedDisponibilite(dispoClasseProf);
+				for (Disponibilite dispo : dispoSalle) {
+					if (dispo.getDuree() >= duree) {
+						return new SalleAndDispo(salle, dispo);
+					}
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+			}
+		}
+		throw new AucuneSalleLibreException();
+	}
+	public static void setSalles(ArrayList<Salle> s){
+		salles = s;
 	}
 
 }

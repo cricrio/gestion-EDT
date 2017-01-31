@@ -20,6 +20,11 @@ public class Generator {
 		getClasses().add(new Classe("classe2"));
 		getClasses().add(new Classe("classe3"));
 
+		getSalles().add(new Salle("IO1"));
+		// getSalles().add(new Salle("IO2"));
+		// getSalles().add(new Salle("IO3"));
+
+		getClasses().get(0).setSalles(getSalles());
 		Matiere francais = new Matiere("francais", 3);
 		Matiere math = new Matiere("math", 3);
 		Matiere anglais = new Matiere("anglais", 3);
@@ -37,6 +42,9 @@ public class Generator {
 		for (Professeur professeur : getProfesseurs()) {
 			professeur.initialize(nbJours, nbHeures);
 		}
+		for (Salle salle : getSalles()) {
+			salle.initialize(nbJours, nbHeures);
+		}
 	}
 
 	private boolean isFinish() {
@@ -48,12 +56,11 @@ public class Generator {
 		while (!isFinish()) {
 			for (Classe classe : getClasses()) {
 				if (!classe.toutLesCoursPlacer()) {
-					System.out.println(i++);
 					classe.placerRandomCours();
 				}
 			}
 		}
-		for(Classe classe : getClasses()){
+		for (Classe classe : getClasses()) {
 			System.out.println(classe.getAllCours());
 		}
 	}
@@ -81,5 +88,5 @@ public class Generator {
 	public void setProfesseurs(ArrayList<Professeur> professeurs) {
 		this.professeurs = professeurs;
 	}
-	
+
 }

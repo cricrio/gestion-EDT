@@ -2,6 +2,8 @@ package ent;
 
 import java.util.ArrayList;
 
+import exception.DispoNonCommuneExeption;
+
 public class EDT {
 	private ArrayList<Disponibilite> disponibilites = new ArrayList<Disponibilite>();
 	private ArrayList<Cours> coursList = new ArrayList<Cours>();
@@ -15,7 +17,7 @@ public class EDT {
 	public void initialize(int nbJours, int nbHeures) {
 		setNbJours(nbJours);
 		setNbHeures(nbHeures);
-
+		
 		Disponibilite disponibilite;
 		for (int i = 0; i < nbJours; i++) {
 			// création des plages dispo
@@ -106,6 +108,24 @@ public class EDT {
 	public void setDisponibilites(ArrayList<Disponibilite> disponibilites) {
 		this.disponibilites = disponibilites;
 	}
+
+	public ArrayList<Disponibilite> getSharedDisponibilite(ArrayList<Disponibilite> dispoSource) throws Exception{
+		ArrayList<Disponibilite> disponibiliteBoth = new ArrayList<Disponibilite>();
+
+		for (Disponibilite disponibiliteP : dispoSource) {
+			for (Disponibilite disponibiliteC : disponibilites) {
+				try {
+					disponibiliteBoth.add(disponibiliteC.getShareDiponibilte(disponibiliteP));
+				} catch (Exception e) {
+//				e.printStackTrace();
+				}
+			}
+		}
+		if (disponibiliteBoth.isEmpty()) {
+			throw new DispoNonCommuneExeption();
+		}
+		return disponibiliteBoth;
+	}
 	@Override
 	public String toString(){
 		String liste ="";
@@ -121,7 +141,6 @@ public class EDT {
 			for (Cours cours1 : getCoursList()) {
 				if (cours.equals(cours1)) {
 					count++;
-					System.out.println(count);
 				}
 				if (count > 1) {
 					return false;

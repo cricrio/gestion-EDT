@@ -1,17 +1,20 @@
 package ent;
 
+import exception.DispoNonCommuneExeption;
+import exception.DispoPasMemeJourException;
+
 public class Disponibilite {
 	private int heureDebut;
 
 	private int heureFin;
 	private int jour;
 
-	public Disponibilite getShareDiponibilte(Disponibilite source) throws Exception {
+	public Disponibilite getShareDiponibilte(Disponibilite source) throws DispoNonCommuneExeption,DispoPasMemeJourException {
 		Disponibilite result = new Disponibilite();
 		if (source.getJour() != getJour()) {
-			throw new Exception("Pas sur le meme jour");
+			throw new DispoPasMemeJourException();
 		} else if (source.getHeureFin() < getHeureDebut() || source.getHeureDebut() > getHeureFin()) {
-			throw new Exception("Non contigu");
+			throw new DispoNonCommuneExeption();
 		}
 		int heureDebut = source.getHeureDebut() > getHeureDebut() ? source.getHeureDebut() : getHeureDebut();
 		int heureFin = source.getHeureFin() < getHeureFin() ? source.getHeureFin() : getHeureFin();

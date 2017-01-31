@@ -8,6 +8,7 @@ import org.junit.Test;
 import ent.Classe;
 import ent.Generator;
 import ent.Professeur;
+import ent.Salle;
 
 public class GeneratorTest {
 	Generator generator;
@@ -33,7 +34,15 @@ public class GeneratorTest {
 	@Test
 	public void integriteClasses() {
 		for(Classe c : generator.getClasses()){
+			
 			assertEquals(true, c.checkIntegrite());
+		}
+	}
+	@Test
+	public void integriteSalles() {
+		for(Salle s : generator.getSalles()){
+			
+			assertEquals(true, s.checkIntegrite());
 		}
 	}
 	

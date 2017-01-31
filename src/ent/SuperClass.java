@@ -2,12 +2,14 @@ package ent;
 
 import java.util.ArrayList;
 
-public class SuperClass {
+public abstract class SuperClass {
 	protected String nom;
+
+	
 
 	@Override
 	public String toString() {
-		return "SuperClass [nom=" + nom + "]";
+		return "[nom=" + nom + "]";
 	}
 
 	EDT edt = new EDT();
@@ -24,6 +26,10 @@ public class SuperClass {
 		return edt.getDisponibilites();
 	}
 
+	public ArrayList<Disponibilite> getSharedDisponibilite(ArrayList<Disponibilite> dispoSource) throws Exception {
+		return edt.getSharedDisponibilite(dispoSource);
+	}
+
 	protected ArrayList<Cours> getAllCours() {
 		return edt.getCoursList();
 	}
@@ -32,7 +38,7 @@ public class SuperClass {
 		return edt.getCours(j, h);
 	}
 
-	public boolean checkIntegrite(){
+	public boolean checkIntegrite() {
 		return edt.checkIntegrite();
 	}
 }

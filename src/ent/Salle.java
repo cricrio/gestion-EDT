@@ -1,8 +1,9 @@
 package ent;
 
-import java.util.ArrayList;
+public class Salle extends SuperClass {
 
-public class Salle<Crenaux> extends SuperClass{
+	public Salle(String nom) {
+		this.nom = nom;
+	}
 
-	private ArrayList<Crenaux> crenauxAPlacer = new ArrayList<Crenaux>();
 }
