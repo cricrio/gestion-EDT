@@ -1,4 +1,4 @@
-package ent;
+package models;
 
 import exception.DispoNonCommuneExeption;
 import exception.DispoPasMemeJourException;

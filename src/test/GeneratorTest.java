@@ -1,22 +1,24 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import ent.Classe;
-import ent.Generator;
-import ent.Professeur;
-import ent.Salle;
+import ent.GeneratorEDTs;
+import executeur.MainSimple;
+import models.Classe;
+import models.Professeur;
+import models.Salle;
 
 public class GeneratorTest {
-	Generator generator;
+	GeneratorEDTs generator;
 	@Before
 	public void setUp() throws Exception {
-		 generator = new Generator();
+		 generator = new GeneratorEDTs();
 		try {
-			generator.initialize(8, 5);
+			MainSimple ms = new MainSimple();
+			ms.initialize(5, 10);
 			generator.placerCours();
 		} catch (Exception e) {
 			e.printStackTrace();

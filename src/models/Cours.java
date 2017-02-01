@@ -1,4 +1,4 @@
-package ent;
+package models;
 
 public class Cours {
 	private int jourDebut;

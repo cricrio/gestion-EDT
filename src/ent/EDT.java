@@ -3,6 +3,8 @@ package ent;
 import java.util.ArrayList;
 
 import exception.DispoNonCommuneExeption;
+import models.Cours;
+import models.Disponibilite;
 
 public class EDT {
 	private ArrayList<Disponibilite> disponibilites = new ArrayList<Disponibilite>();

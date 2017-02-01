@@ -1,4 +1,4 @@
-package ent;
+package models;
 
 public class Professeur extends SuperClass {
 	public Professeur(String nom){

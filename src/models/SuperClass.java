@@ -1,6 +1,8 @@
-package ent;
+package models;
 
 import java.util.ArrayList;
+
+import ent.EDT;
 
 public abstract class SuperClass {
 	protected String nom;
@@ -30,7 +32,7 @@ public abstract class SuperClass {
 		return edt.getSharedDisponibilite(dispoSource);
 	}
 
-	protected ArrayList<Cours> getAllCours() {
+	public ArrayList<Cours> getAllCours() {
 		return edt.getCoursList();
 	}
 

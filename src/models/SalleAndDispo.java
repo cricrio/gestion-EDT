@@ -1,4 +1,4 @@
-package ent;
+package models;
 
 import java.util.ArrayList;
 

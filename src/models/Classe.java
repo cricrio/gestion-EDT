@@ -1,4 +1,4 @@
-package ent;
+package models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +11,10 @@ public class Classe extends SuperClass {
 	public static int nbClasse;
 
 	public Classe(String nom) {
+		this.nom = nom;
+	}
+
+	public Classe(String nom, Niveau niveau) {
 		this.nom = nom;
 	}
 
@@ -44,7 +48,7 @@ public class Classe extends SuperClass {
 		int index = 0;
 		ArrayList<Disponibilite> disponibilites = getDisponibilite(matiere);
 		SalleAndDispo salleAndDispo = findSalleLibre(disponibilites, duree);
-		Cours cours = new Cours(salleAndDispo.dispos.getJour(),salleAndDispo.dispos.getHeureDebut(),duree);
+		Cours cours = new Cours(salleAndDispo.dispos.getJour(), salleAndDispo.dispos.getHeureDebut(), duree);
 		cours.setSalle(salleAndDispo.salle);
 		return cours;
 	}
@@ -58,7 +62,6 @@ public class Classe extends SuperClass {
 		ArrayList<Disponibilite> disponibiliteProf = matiere.getProfesseur().getDisponibilite();
 		return super.getSharedDisponibilite(disponibiliteProf);
 	}
-	
 
 	public void placerCoursInAll(Cours cours, Matiere matiere) {
 		cours.setProf(matiere.getProfesseur());
@@ -85,8 +88,9 @@ public class Classe extends SuperClass {
 
 	}
 
-	public SalleAndDispo findSalleLibre(ArrayList<Disponibilite> dispoClasseProf, int duree) throws AucuneSalleLibreException {
-		 for (Salle salle : salles) {
+	public SalleAndDispo findSalleLibre(ArrayList<Disponibilite> dispoClasseProf, int duree)
+			throws AucuneSalleLibreException {
+		for (Salle salle : salles) {
 			try {
 				ArrayList<Disponibilite> dispoSalle = salle.getSharedDisponibilite(dispoClasseProf);
 				for (Disponibilite dispo : dispoSalle) {
@@ -101,8 +105,23 @@ public class Classe extends SuperClass {
 		}
 		throw new AucuneSalleLibreException();
 	}
-	public static void setSalles(ArrayList<Salle> s){
+
+	public static void setSalles(ArrayList<Salle> s) {
 		salles = s;
 	}
 
+	/**
+	 * Attribut un prof à toute les matieres ayant un intitule identique à celle
+	 * passé en paramètre
+	 * 
+	 * @param prof
+	 * @param matiere
+	 */
+	public void attribuerProfesseurAUneMatiere(Professeur prof, Matiere matiere) {
+		for (Matiere m : matieresAPlacer) {
+			if (m.equals(matiere)) {
+				m.setProfesseur(prof);
+			}
+		}
+	}
 }
