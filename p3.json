@@ -1,0 +1,34 @@
+{
+  "nom": "angilasP",
+  "id": 3,
+  "edt": {
+    "disponibilites": [
+      {
+        "heureDebut": 0,
+        "heureFin": 9,
+        "jour": 0
+      },
+      {
+        "heureDebut": 0,
+        "heureFin": 9,
+        "jour": 1
+      },
+      {
+        "heureDebut": 0,
+        "heureFin": 9,
+        "jour": 2
+      },
+      {
+        "heureDebut": 0,
+        "heureFin": 9,
+        "jour": 3
+      },
+      {
+        "heureDebut": 0,
+        "heureFin": 9,
+        "jour": 4
+      }
+    ],
+    "coursList": []
+  }
+}

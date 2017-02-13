@@ -1,14 +1,18 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import ent.EDT;
 
 public abstract class SuperClass {
 	protected String nom;
-
+	private static final AtomicInteger COUNTER = new AtomicInteger();
+	private final int id;
 	
-
+	public SuperClass() {
+		this.id = COUNTER.incrementAndGet();
+	}
 	@Override
 	public String toString() {
 		return "[nom=" + nom + "]";
@@ -42,5 +46,13 @@ public abstract class SuperClass {
 
 	public boolean checkIntegrite() {
 		return edt.checkIntegrite();
+	}
+
+	public static AtomicInteger getCounter() {
+		return COUNTER;
+	}
+
+	public int getId() {
+		return id;
 	}
 }

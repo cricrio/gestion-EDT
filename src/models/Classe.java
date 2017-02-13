@@ -8,6 +8,7 @@ import exception.AucuneSalleLibreException;
 public class Classe extends SuperClass {
 	private ArrayList<Matiere> matieresAPlacer = new ArrayList<Matiere>();
 	public static ArrayList<Salle> salles;
+	private Niveau niveau;
 	public static int nbClasse;
 
 	public Classe(String nom) {
@@ -16,6 +17,8 @@ public class Classe extends SuperClass {
 
 	public Classe(String nom, Niveau niveau) {
 		this.nom = nom;
+		this.setNiveau(niveau); 
+		setMatieresAPlacer(niveau.getMatieres());
 	}
 
 	public void initialize(int nbj, int nbh, int nbClasse) throws Exception {
@@ -28,12 +31,12 @@ public class Classe extends SuperClass {
 		// entre les différentes places
 		Matiere m = new Matiere(matiere.getIntitule(), matiere.getNbHeure());
 		m.setProfesseur(matiere.getProfesseur());
-		matieresAPlacer.add(m);
+		getMatieresAPlacer().add(m);
 	}
 
 	private Matiere getRandomMatiere() {
-		int index = (int) (Math.random() * matieresAPlacer.size());
-		return matieresAPlacer.get(index);
+		int index = (int) (Math.random() * getMatieresAPlacer().size());
+		return getMatieresAPlacer().get(index);
 	}
 
 	public void placerRandomCours() throws Exception {
@@ -54,8 +57,8 @@ public class Classe extends SuperClass {
 	}
 
 	public boolean toutLesCoursPlacer() {
-		System.out.println(nom + " matieres à placer :" + matieresAPlacer.size());
-		return matieresAPlacer.isEmpty();
+		System.out.println(nom + " matieres à placer :" + getMatieresAPlacer().size());
+		return getMatieresAPlacer().isEmpty();
 	}
 
 	public ArrayList<Disponibilite> getDisponibilite(Matiere matiere) throws Exception {
@@ -71,8 +74,8 @@ public class Classe extends SuperClass {
 		matiere.getProfesseur().placerCours(cours);
 		matiere.decremanter();
 		if (matiere.toutLesCoursPlacer()) {
-			matieresAPlacer.remove(matiere);
-			if (matieresAPlacer.isEmpty()) {
+			getMatieresAPlacer().remove(matiere);
+			if (getMatieresAPlacer().isEmpty()) {
 				nbClasse--;
 			}
 		}
@@ -83,7 +86,7 @@ public class Classe extends SuperClass {
 		matiere.getProfesseur().getCours(j, h).setClasse(this);
 		matiere.decremanter();
 		if (matiere.toutLesCoursPlacer()) {
-			matieresAPlacer.remove(matiere);
+			getMatieresAPlacer().remove(matiere);
 		}
 
 	}
@@ -118,10 +121,26 @@ public class Classe extends SuperClass {
 	 * @param matiere
 	 */
 	public void attribuerProfesseurAUneMatiere(Professeur prof, Matiere matiere) {
-		for (Matiere m : matieresAPlacer) {
+		for (Matiere m : getMatieresAPlacer()) {
 			if (m.equals(matiere)) {
 				m.setProfesseur(prof);
 			}
 		}
+	}
+
+	public ArrayList<Matiere> getMatieresAPlacer() {
+		return matieresAPlacer;
+	}
+
+	public void setMatieresAPlacer(ArrayList<Matiere> matieresAPlacer) {
+		this.matieresAPlacer = matieresAPlacer;
+	}
+
+	public Niveau getNiveau() {
+		return niveau;
+	}
+
+	public void setNiveau(Niveau niveau) {
+		this.niveau = niveau;
 	}
 }

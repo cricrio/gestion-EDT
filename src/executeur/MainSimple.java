@@ -3,6 +3,7 @@ package executeur;
 import java.util.ArrayList;
 
 import ent.GeneratorEDTs;
+import fournisseur.ExportData;
 import models.Classe;
 import models.Matiere;
 import models.Niveau;
@@ -28,6 +29,7 @@ public class MainSimple {
 		GeneratorEDTs generator = new GeneratorEDTs();
 		try {
 			ms.initialize(5, 10);
+//			ExportImportData.exportClasse(ms.getClasses().get(0)+".json",ms.getClasses().get(0));
 			generator.setProfesseurs(ms.getProfesseurs());
 			generator.setClasses(ms.getClasses());
 			generator.setSalles(ms.getSalles());
