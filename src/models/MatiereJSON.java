@@ -1,6 +1,10 @@
 package models;
 
 public class MatiereJSON {
+	@Override
+	public String toString() {
+		return "MatiereJSON [idMatiere=" + idMatiere + ", idProfesseur=" + idProfesseur + "]";
+	}
 	private int idMatiere;
 	private int idProfesseur;
 	

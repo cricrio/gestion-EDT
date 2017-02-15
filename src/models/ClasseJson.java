@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class ClasseJson {
 	private String intitule;
 	private int niveau;
+	@Override
+	public String toString() {
+		return "ClasseJson [intitule=" + intitule + ", niveau=" + niveau + ", id=" + id + ", matieres=" + matieres
+				+ "]";
+	}
 	private int id;
 	private ArrayList<MatiereJSON> matieres;
 	public String getIntitule() {

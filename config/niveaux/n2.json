@@ -1,0 +1,18 @@
+{
+  "id": 2,
+  "intitule": "sec",
+  "matieres": [
+    {
+      "id": 2,
+      "intitule": "Francais",
+      "nbHeure": 2,
+      "duree": 0
+    },
+    {
+      "id": 5,
+      "intitule": "Mat",
+      "nbHeure": 2,
+      "duree": 0
+    }
+  ]
+}

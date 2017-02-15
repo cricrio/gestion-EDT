@@ -14,6 +14,7 @@ import models.Matiere;
 import models.MatiereJSON;
 import models.Niveau;
 import models.Professeur;
+import models.Salle;
 
 public class ExportData {
 	public static void main(String[] args) {
@@ -68,5 +69,17 @@ public class ExportData {
 			e.printStackTrace();
 		}
 		
+	}
+
+	public static void exportSalle(String filename, Salle salle) {
+
+		Gson gson = new GsonBuilder()
+				.setPrettyPrinting()
+				.create();
+		try(Writer writer = new FileWriter(filename)){
+			gson.toJson(salle,writer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

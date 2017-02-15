@@ -1,0 +1,18 @@
+{
+  "id": 3,
+  "intitule": "prim",
+  "matieres": [
+    {
+      "id": 3,
+      "intitule": "Francais",
+      "nbHeure": 4,
+      "duree": 0
+    },
+    {
+      "id": 6,
+      "intitule": "Mat",
+      "nbHeure": 4,
+      "duree": 0
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import models.Classe;
 import models.Matiere;
 import models.Niveau;
 import models.Professeur;
+import models.Salle;
 
 public class DataMaker {
 	Niveau ter = new Niveau("ter");
@@ -17,10 +18,10 @@ public class DataMaker {
 	
 	public static void main(String[] args){
 		DataMaker dataMaker = new DataMaker();
-		
-		dataMaker.writeSomeNiveau();
-		dataMaker.writeSomeClasse();
-
+		dataMaker.writeSomeSalle();
+//		dataMaker.writeSomeNiveau();
+//		dataMaker.writeSomeClasse();
+//		dataMaker.writeSomeProfesseur();
 	}
 	public  void writeSomeNiveau(){
 		ArrayList<Matiere> terMat = new ArrayList<>();
@@ -56,6 +57,16 @@ public class DataMaker {
 		ExportData.exportClasse("c"+classe1.getId()+".json", classe1);
 		ExportData.exportClasse("c"+classe2.getId()+".json", classe3);
 		ExportData.exportClasse("c"+classe3.getId()+".json", classe3);
+
+	}
+	public void writeSomeSalle(){
+		Salle classe1 = new Salle("ter1");
+		Salle classe2 = new Salle("sec1");
+		Salle classe3 = new Salle("prim");
+		
+		ExportData.exportSalle("s"+classe1.getId()+".json", classe1);
+		ExportData.exportSalle("s"+classe2.getId()+".json", classe3);
+		ExportData.exportSalle("s"+classe3.getId()+".json", classe3);
 
 	}
 	public void writeSomeProfesseur(){

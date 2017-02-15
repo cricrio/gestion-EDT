@@ -1,0 +1,14 @@
+{
+  "niveau": 1,
+  "id": 1,
+  "matieres": [
+    {
+      "idMatiere": 1,
+      "idProfesseur": 0
+    },
+    {
+      "idMatiere": 4,
+      "idProfesseur": 0
+    }
+  ]
+}
