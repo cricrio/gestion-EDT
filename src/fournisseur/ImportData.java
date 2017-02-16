@@ -10,14 +10,18 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
+import models.Classe;
 import models.ClasseJson;
+import models.Matiere;
+import models.MatiereJSON;
 import models.Niveau;
 import models.Professeur;
 import models.Salle;
 
 public class ImportData {
-	Gson gson;
-	private ArrayList<ClasseJson> classes;
+	private Gson gson;
+	private ArrayList<ClasseJson> classeJsons;
+	private ArrayList<Classe> classes;
 	private ArrayList<Salle> salles;
 	private ArrayList<Niveau> niveaux;
 	private ArrayList<Professeur> professeurs;
@@ -30,22 +34,53 @@ public class ImportData {
 		importProfesseurs();
 		importSalles();
 		importClassesJson();
+		setClasses();
 	}
 
-	private ArrayList<ClasseJson> importClassesJson() {
+	private void setClasses() {
 		classes = new ArrayList<>();
+		for(ClasseJson classeJson : getClasseJsons()) {
+			classes.add(transformClasseJson(classeJson));
+		}
+	}
+	
+	private Professeur findProfesseurById(int id) {
+		for(Professeur professeur : professeurs) {
+			if(professeur.getId() == id) {
+				return professeur;
+			}
+		}
+		return null;
+	}
+	
+	private Classe transformClasseJson(ClasseJson cJson) {
+		Classe classe = new Classe("vgf");
+		ArrayList<MatiereJSON> matiereJSONs = cJson.getMatieres();
+		ArrayList<Matiere> matieres = new ArrayList<>();
+		Niveau niveau = niveaux.get(niveaux.indexOf(new Niveau("", cJson.getNiveau())));
+		classe.setMatieresAPlacer(matieres);
+		for(MatiereJSON mJson : cJson.getMatieres()) {
+			Matiere matiere = niveau.findMatiereById(mJson.getIdMatiere());
+			matiere.setProfesseur(findProfesseurById(mJson.getIdProfesseur()));
+			matieres.add(matiere);
+		}
+		return classe;
+	}
+	
+	private ArrayList<ClasseJson> importClassesJson() {
+		setClasseJsons(new ArrayList<>());
 		ClasseJson classe;
 		String nameFolder = folderpath+"/classes/";
 		for (String name : getFileFromFolder(nameFolder)) {
 
 			try {
 				classe = gson.fromJson(new FileReader(nameFolder + name), ClasseJson.class);
-				classes.add(classe);
+				getClasseJsons().add(classe);
 			} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
-		return classes;
+		return getClasseJsons();
 	}
 
 	private ArrayList<Niveau> importNiveaux() {
@@ -112,14 +147,7 @@ public class ImportData {
 		this.folderpath = folderpath;
 	}
 
-	public ArrayList<ClasseJson> getClasses() {
-		return classes;
-	}
-
-	public void setClasses(ArrayList<ClasseJson> classes) {
-		this.classes = classes;
-	}
-
+	
 	public ArrayList<Salle> getSalles() {
 		return salles;
 	}
@@ -142,5 +170,21 @@ public class ImportData {
 
 	public void setProfesseurs(ArrayList<Professeur> professeurs) {
 		this.professeurs = professeurs;
+	}
+
+	public ArrayList<ClasseJson> getClasseJsons() {
+		return classeJsons;
+	}
+
+	public void setClasseJsons(ArrayList<ClasseJson> classeJsons) {
+		this.classeJsons = classeJsons;
+	}
+
+	public ArrayList<Classe> getClasses() {
+		return classes;
+	}
+
+	public void setClasses(ArrayList<Classe> classes) {
+		this.classes = classes;
 	}
 }

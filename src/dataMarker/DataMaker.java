@@ -19,9 +19,9 @@ public class DataMaker {
 	public static void main(String[] args){
 		DataMaker dataMaker = new DataMaker();
 		dataMaker.writeSomeSalle();
-//		dataMaker.writeSomeNiveau();
-//		dataMaker.writeSomeClasse();
-//		dataMaker.writeSomeProfesseur();
+		//dataMaker.writeSomeNiveau();
+	//	dataMaker.writeSomeClasse();
+///		dataMaker.writeSomeProfesseur();
 	}
 	public  void writeSomeNiveau(){
 		ArrayList<Matiere> terMat = new ArrayList<>();

@@ -35,6 +35,17 @@ public class Niveau {
 	public void setMatieres(ArrayList<Matiere> matieres) {
 		this.matieres = matieres;
 	}
+	
+	
+	public Matiere findMatiereById(int id) {
+		for(Matiere m : matieres) {
+			if(m.getId() == id) {
+				return m;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

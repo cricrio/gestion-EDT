@@ -4,11 +4,11 @@
   "matieres": [
     {
       "idMatiere": 3,
-      "idProfesseur": 0
+      "idProfesseur": 4
     },
     {
       "idMatiere": 6,
-      "idProfesseur": 0
+      "idProfesseur": 6
     }
   ]
 }
