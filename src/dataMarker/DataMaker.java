@@ -2,7 +2,7 @@ package dataMarker;
 
 import java.util.ArrayList;
 
-import fournisseur.ExportData;
+import importExport.ExportData;
 import models.Classe;
 import models.Matiere;
 import models.Niveau;

@@ -3,8 +3,6 @@ package models;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import ent.EDT;
-
 public abstract class SuperClass {
 	protected String nom;
 	private static final AtomicInteger COUNTER = new AtomicInteger();
@@ -44,6 +42,9 @@ public abstract class SuperClass {
 		return edt.getCours(j, h);
 	}
 
+	/**
+	 * @return false s'il y a plusieurs cours à la même heure
+	 */
 	public boolean checkIntegrite() {
 		return edt.checkIntegrite();
 	}

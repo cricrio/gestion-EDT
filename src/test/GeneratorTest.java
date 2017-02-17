@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ent.GeneratorEDTs;
-import executeur.MainSimple;
+import executeur.MainDump;
 import models.Classe;
 import models.Professeur;
 import models.Salle;
@@ -17,7 +17,7 @@ public class GeneratorTest {
 	public void setUp() throws Exception {
 		 generator = new GeneratorEDTs();
 		try {
-			MainSimple ms = new MainSimple();
+			MainDump ms = new MainDump();
 			ms.initialize(5, 10);
 			generator.placerCours();
 		} catch (Exception e) {

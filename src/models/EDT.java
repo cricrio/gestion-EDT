@@ -1,10 +1,8 @@
-package ent;
+package models;
 
 import java.util.ArrayList;
 
 import exception.DispoNonCommuneExeption;
-import models.Cours;
-import models.Disponibilite;
 
 public class EDT {
 	private ArrayList<Disponibilite> disponibilites = new ArrayList<Disponibilite>();
@@ -19,14 +17,14 @@ public class EDT {
 	public void initialize(int nbJours, int nbHeures) {
 		setNbJours(nbJours);
 		setNbHeures(nbHeures);
-		
+
 		Disponibilite disponibilite;
 		for (int i = 0; i < nbJours; i++) {
 			// création des plages dispo
 			disponibilite = new Disponibilite();
 			disponibilite.setJour(i);
 			disponibilite.setHeureDebut(0);
-			disponibilite.setHeureFin(getNbHeures()-1);
+			disponibilite.setHeureFin(getNbHeures() - 1);
 			// insertion
 			getDisponibilites().add(disponibilite);
 		}
@@ -46,9 +44,11 @@ public class EDT {
 		try {
 			Disponibilite disponibilite = getDisponibilite(cours);
 			if (disponibilite.getHeureDebut() == cours.getHeureDebut()) {
-				disponibilite.setHeureDebut(cours.getHeureFin());;
+				disponibilite.setHeureDebut(cours.getHeureFin());
+				;
 			} else if (disponibilite.getHeureFin() == cours.getHeureDebut()) {
-				disponibilite.setHeureFin(cours.getHeureDebut());;
+				disponibilite.setHeureFin(cours.getHeureDebut());
+				;
 			} else {
 				Disponibilite d1 = new Disponibilite();
 				d1.setHeureDebut(disponibilite.getHeureDebut());
@@ -111,7 +111,7 @@ public class EDT {
 		this.disponibilites = disponibilites;
 	}
 
-	public ArrayList<Disponibilite> getSharedDisponibilite(ArrayList<Disponibilite> dispoSource) throws Exception{
+	public ArrayList<Disponibilite> getSharedDisponibilite(ArrayList<Disponibilite> dispoSource) throws Exception {
 		ArrayList<Disponibilite> disponibiliteBoth = new ArrayList<Disponibilite>();
 
 		for (Disponibilite disponibiliteP : dispoSource) {
@@ -119,7 +119,7 @@ public class EDT {
 				try {
 					disponibiliteBoth.add(disponibiliteC.getShareDiponibilte(disponibiliteP));
 				} catch (Exception e) {
-//				e.printStackTrace();
+					// e.printStackTrace();
 				}
 			}
 		}
@@ -128,14 +128,19 @@ public class EDT {
 		}
 		return disponibiliteBoth;
 	}
+
 	@Override
-	public String toString(){
-		String liste ="";
-		for(Cours c : getCoursList()){
-			liste +=c;
+	public String toString() {
+		String liste = "";
+		for (Cours c : getCoursList()) {
+			liste += c;
 		}
 		return liste;
 	}
+
+	/**
+	 * @return false s'il y a plusieur cours à la même heure
+	 */
 	public boolean checkIntegrite() {
 		int count = 0;
 		for (Cours cours : getCoursList()) {
@@ -149,7 +154,6 @@ public class EDT {
 				}
 			}
 		}
-		System.out.println("end");
 		return true;
 	}
 

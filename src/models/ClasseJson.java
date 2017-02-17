@@ -12,6 +12,7 @@ public class ClasseJson {
 	}
 	private int id;
 	private ArrayList<MatiereJSON> matieres;
+	private ArrayList<CoursJSON> edt;
 	public String getIntitule() {
 		return intitule;
 	}
@@ -35,6 +36,12 @@ public class ClasseJson {
 	}
 	public void setNiveau(int niveau) {
 		this.niveau = niveau;
+	}
+	public ArrayList<CoursJSON> getEdt() {
+		return edt;
+	}
+	public void setEdt(ArrayList<CoursJSON> edt) {
+		this.edt = edt;
 	}
 	
 }

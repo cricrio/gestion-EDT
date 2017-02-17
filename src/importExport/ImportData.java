@@ -1,4 +1,4 @@
-package fournisseur;
+package importExport;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +27,9 @@ public class ImportData {
 	private ArrayList<Professeur> professeurs;
 	private String folderpath;
 
+	private int nbJours = 8;
+	private int nbHeures = 5;
+
 	public ImportData(String folderpath) {
 		setFolderpath(folderpath);
 		gson = new GsonBuilder().setPrettyPrinting().create();
@@ -35,42 +38,63 @@ public class ImportData {
 		importSalles();
 		importClassesJson();
 		setClasses();
+		initializeData();
+	}
+
+	private void initializeData() {
+		try {
+			classes.get(0).setSalles(getSalles());
+			for (Classe classe : classes) {
+				//
+				classe.initialize(nbJours, nbHeures,getClasses().size());
+			}
+			for (Professeur professeur : professeurs) {
+				professeur.initialize(nbJours, nbHeures);
+			}
+			for (Salle salle : salles) {
+				salle.initialize(nbJours, nbHeures);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	private void setClasses() {
 		classes = new ArrayList<>();
-		for(ClasseJson classeJson : getClasseJsons()) {
+		for (ClasseJson classeJson : getClasseJsons()) {
 			classes.add(transformClasseJson(classeJson));
 		}
 	}
-	
+
 	private Professeur findProfesseurById(int id) {
-		for(Professeur professeur : professeurs) {
-			if(professeur.getId() == id) {
+		for (Professeur professeur : professeurs) {
+			if (professeur.getId() == id) {
 				return professeur;
 			}
 		}
 		return null;
 	}
-	
+
 	private Classe transformClasseJson(ClasseJson cJson) {
 		Classe classe = new Classe("vgf");
 		ArrayList<MatiereJSON> matiereJSONs = cJson.getMatieres();
 		ArrayList<Matiere> matieres = new ArrayList<>();
 		Niveau niveau = niveaux.get(niveaux.indexOf(new Niveau("", cJson.getNiveau())));
+		classe.setNiveau(niveau);
 		classe.setMatieresAPlacer(matieres);
-		for(MatiereJSON mJson : cJson.getMatieres()) {
+		for (MatiereJSON mJson : cJson.getMatieres()) {
 			Matiere matiere = niveau.findMatiereById(mJson.getIdMatiere());
 			matiere.setProfesseur(findProfesseurById(mJson.getIdProfesseur()));
 			matieres.add(matiere);
 		}
 		return classe;
 	}
-	
+
 	private ArrayList<ClasseJson> importClassesJson() {
 		setClasseJsons(new ArrayList<>());
 		ClasseJson classe;
-		String nameFolder = folderpath+"/classes/";
+		String nameFolder = folderpath + "/classes/";
 		for (String name : getFileFromFolder(nameFolder)) {
 
 			try {
@@ -86,7 +110,7 @@ public class ImportData {
 	private ArrayList<Niveau> importNiveaux() {
 		niveaux = new ArrayList<>();
 		Niveau niveau;
-		String nameFolder = folderpath+"/niveaux/";
+		String nameFolder = folderpath + "/niveaux/";
 		for (String name : getFileFromFolder(nameFolder)) {
 
 			try {
@@ -102,7 +126,7 @@ public class ImportData {
 	private ArrayList<Professeur> importProfesseurs() {
 		professeurs = new ArrayList<>();
 		Professeur prof;
-		String nameFolder = folderpath+"/professeurs/";
+		String nameFolder = folderpath + "/professeurs/";
 		for (String name : getFileFromFolder(nameFolder)) {
 
 			try {
@@ -118,7 +142,7 @@ public class ImportData {
 	private ArrayList<Salle> importSalles() {
 		salles = new ArrayList<>();
 		Salle salle;
-		String nameFolder = folderpath+"/salles/";
+		String nameFolder = folderpath + "/salles/";
 		for (String name : getFileFromFolder(nameFolder)) {
 
 			try {
@@ -147,7 +171,6 @@ public class ImportData {
 		this.folderpath = folderpath;
 	}
 
-	
 	public ArrayList<Salle> getSalles() {
 		return salles;
 	}
@@ -172,11 +195,11 @@ public class ImportData {
 		this.professeurs = professeurs;
 	}
 
-	public ArrayList<ClasseJson> getClasseJsons() {
+	private ArrayList<ClasseJson> getClasseJsons() {
 		return classeJsons;
 	}
 
-	public void setClasseJsons(ArrayList<ClasseJson> classeJsons) {
+	private void setClasseJsons(ArrayList<ClasseJson> classeJsons) {
 		this.classeJsons = classeJsons;
 	}
 

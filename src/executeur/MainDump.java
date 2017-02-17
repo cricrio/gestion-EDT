@@ -3,7 +3,7 @@ package executeur;
 import java.util.ArrayList;
 
 import ent.GeneratorEDTs;
-import fournisseur.ExportData;
+import importExport.ExportData;
 import models.Classe;
 import models.Matiere;
 import models.Niveau;
@@ -12,24 +12,23 @@ import models.Salle;
 
 /**
  * 
- * Avec cette utilisation du main les donnée sont prédéfini par le générateur
- * Les informations sont codés en dure dans le code
+ * 
+ * Cette classe fournit des dumps données codées en dure 
  * 
  * @author christo
  *
  */
-public class MainSimple {
+public class MainDump {
 	
 	private ArrayList<Classe> classes = new ArrayList<Classe>();
 	private ArrayList<Salle> salles = new ArrayList<Salle>();
 	private ArrayList<Professeur> professeurs = new ArrayList<Professeur>();
 
 	public static void main(String[] args) {
-		MainSimple ms = new MainSimple();
+		MainDump ms = new MainDump();
 		GeneratorEDTs generator = new GeneratorEDTs();
 		try {
 			ms.initialize(5, 10);
-//			ExportImportData.exportClasse(ms.getClasses().get(0)+".json",ms.getClasses().get(0));
 			generator.setProfesseurs(ms.getProfesseurs());
 			generator.setClasses(ms.getClasses());
 			generator.setSalles(ms.getSalles());

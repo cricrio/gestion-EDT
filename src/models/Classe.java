@@ -6,6 +6,7 @@ import exception.AucuneSalleLibreException;
 
 public class Classe extends SuperClass {
 	private ArrayList<Matiere> matieresAPlacer = new ArrayList<Matiere>();
+	//TODO enlever la liste des salles de cette classe
 	public static ArrayList<Salle> salles;
 	private Niveau niveau;
 	public static int nbClasse;
@@ -19,9 +20,16 @@ public class Classe extends SuperClass {
 		this.setNiveau(niveau); 
 		setMatieresAPlacer(niveau.getMatieres());
 	}
-
-	public void initialize(int nbj, int nbh, int nbClasse) throws Exception {
-		this.nbClasse = nbClasse;
+		
+	/**
+	 * La classe doit connaitre le nombre de classes pour pouvoir termimer
+	 * A modifier !!! 
+	 * @param nbj
+	 * @param nbh
+	 * @param nbClasse
+	 * @throws Exception
+	 */
+	public void initialize(int nbj, int nbh, int nbClasse) throws Exception { this.nbClasse = nbClasse;
 		initialize(nbj, nbh);
 	}
 

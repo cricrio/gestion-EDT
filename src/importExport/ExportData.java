@@ -1,4 +1,4 @@
-package fournisseur;
+package importExport;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +10,8 @@ import com.google.gson.GsonBuilder;
 
 import models.Classe;
 import models.ClasseJson;
+import models.Cours;
+import models.CoursJSON;
 import models.Matiere;
 import models.MatiereJSON;
 import models.Niveau;
@@ -17,15 +19,41 @@ import models.Professeur;
 import models.Salle;
 
 public class ExportData {
-	public static void main(String[] args) {
-		ExportData.exportNiveau("niveau1.json",null);
+	
+	private Gson gson = new GsonBuilder()
+			.setPrettyPrinting()
+			.create();
+	private String folder;
+	
+	public ExportData(String folder) {
+		setFolder(folder);
 	}
 	
-	public static void exportClasse(String filename,Classe classe){
+	public void exportClasses(ArrayList<Classe> classes) {
+		String path = folder+"classes/";
+		for(Classe classe : classes) {
+			exportClasse(path+"c"+classe.getId()+".json", classe);
+		}
+	}
+	
+	
+	public void exportClasse(String filename,Classe classe){
 		ClasseJson  classeJson= new ClasseJson();
 		ArrayList<MatiereJSON> matiereJSONs = new ArrayList<>();
+		ArrayList<CoursJSON> edt = new ArrayList<>();
+		
 		classeJson.setId(classe.getId());
 		classeJson.setNiveau(classe.getNiveau().getId());
+		for(Cours c : classe.getAllCours()) {
+			CoursJSON cJson = new CoursJSON();
+			cJson.setDuree(c.getDuree());
+			cJson.setHeureDebut(c.getHeureDebut());
+			cJson.setJourDebut(c.getJour());
+			cJson.setIdprof(c.getProf().getId());
+			cJson.setIdclasse(c.getClasse().getId());
+			cJson.setIdsalle(c.getSalle().getId());
+			edt.add(cJson);
+		}
 		for(Matiere matiere : classe.getMatieresAPlacer()){
 			if(matiere.getProfesseur() !=null){
 				matiereJSONs.add(new MatiereJSON(matiere.getId(),matiere.getProfesseur().getId()));
@@ -34,10 +62,10 @@ public class ExportData {
 			}
 			
 		}
+		
+		classeJson.setEdt(edt);
 		classeJson.setMatieres(matiereJSONs);
-		Gson gson = new GsonBuilder()
-				.setPrettyPrinting()
-				.create();
+		
 		try(Writer writer = new FileWriter(filename)){
 			gson.toJson(classeJson,writer);
 		} catch (IOException e) {
@@ -46,7 +74,7 @@ public class ExportData {
 	
 	}
 	
-	public static void exportProfesseur(String filename,Professeur professeur){
+	public void exportProfesseur(String filename,Professeur professeur){
 		Gson gson = new GsonBuilder()
 				.setPrettyPrinting()
 				.create();
@@ -58,7 +86,7 @@ public class ExportData {
 	}
 	
 	
-	public static void exportNiveau(String filename,Niveau niveau){
+	public void exportNiveau(String filename,Niveau niveau){
 
 		Gson gson = new GsonBuilder()
 				.setPrettyPrinting()
@@ -71,7 +99,7 @@ public class ExportData {
 		
 	}
 
-	public static void exportSalle(String filename, Salle salle) {
+	public void exportSalle(String filename, Salle salle) {
 
 		Gson gson = new GsonBuilder()
 				.setPrettyPrinting()
@@ -81,5 +109,13 @@ public class ExportData {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String getFolder() {
+		return folder;
+	}
+
+	public void setFolder(String folder) {
+		this.folder = folder;
 	}
 }

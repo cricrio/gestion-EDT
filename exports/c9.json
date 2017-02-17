@@ -1,13 +1,13 @@
 {
-  "niveau": 1,
-  "id": 1,
+  "niveau": 3,
+  "id": 9,
   "matieres": [
     {
-      "idMatiere": 1,
+      "idMatiere": 3,
       "idProfesseur": 4
     },
     {
-      "idMatiere": 4,
+      "idMatiere": 6,
       "idProfesseur": 6
     }
   ]
