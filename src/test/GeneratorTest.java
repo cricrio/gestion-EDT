@@ -19,7 +19,7 @@ public class GeneratorTest {
 		try {
 			MainDump ms = new MainDump();
 			ms.initialize(5, 10);
-			generator.placerCours();
+			generator.genererEmploiDuTemps();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -111,7 +111,7 @@ public class EDT {
 		this.disponibilites = disponibilites;
 	}
 
-	public ArrayList<Disponibilite> getSharedDisponibilite(ArrayList<Disponibilite> dispoSource) throws Exception {
+	public ArrayList<Disponibilite> getSharedDisponibilite(ArrayList<Disponibilite> dispoSource) throws DispoNonCommuneExeption {
 		ArrayList<Disponibilite> disponibiliteBoth = new ArrayList<Disponibilite>();
 
 		for (Disponibilite disponibiliteP : dispoSource) {

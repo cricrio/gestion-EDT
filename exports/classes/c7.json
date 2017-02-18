@@ -7,30 +7,6 @@
       "jourDebut": 0,
       "heureDebut": 0,
       "duree": 0,
-      "idprof": 6,
-      "idclasse": 7,
-      "idsalle": 3
-    },
-    {
-      "jourDebut": 0,
-      "heureDebut": 0,
-      "duree": 0,
-      "idprof": 6,
-      "idclasse": 7,
-      "idsalle": 3
-    },
-    {
-      "jourDebut": 0,
-      "heureDebut": 0,
-      "duree": 0,
-      "idprof": 4,
-      "idclasse": 7,
-      "idsalle": 3
-    },
-    {
-      "jourDebut": 0,
-      "heureDebut": 0,
-      "duree": 0,
       "idprof": 4,
       "idclasse": 7,
       "idsalle": 3
@@ -55,6 +31,14 @@
       "jourDebut": 0,
       "heureDebut": 0,
       "duree": 0,
+      "idprof": 4,
+      "idclasse": 7,
+      "idsalle": 3
+    },
+    {
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
       "idprof": 6,
       "idclasse": 7,
       "idsalle": 3
@@ -64,6 +48,22 @@
       "heureDebut": 0,
       "duree": 0,
       "idprof": 4,
+      "idclasse": 7,
+      "idsalle": 3
+    },
+    {
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
+      "idprof": 6,
+      "idclasse": 7,
+      "idsalle": 3
+    },
+    {
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
+      "idprof": 6,
       "idclasse": 7,
       "idsalle": 3
     }

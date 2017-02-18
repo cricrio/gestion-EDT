@@ -4,9 +4,10 @@ public class Cours {
 	private int jourDebut;
 	private int heureDebut;
 	private int duree;
-	private SuperClass prof;
-	private SuperClass classe;
-	private SuperClass salle;
+	private Matiere matiere;
+	private Professeur prof;
+	private Classe classe;
+	private Salle salle;
 	
 	public Cours() {
 		
@@ -27,7 +28,7 @@ public class Cours {
 	}
 	@Override
 	public String toString() {
-		return "Cours [jour=" + jourDebut + ", heure=" + heureDebut + ", prof=" + prof + ", classe=" + classe + ", salle=" + salle
+		return "Cours [jour=" + jourDebut + ", heure=" + heureDebut + ", prof=" + getProf() + ", classe=" + getClasse() + ", salle=" + getSalle()
 				+ "]";
 	}
 
@@ -61,24 +62,6 @@ public class Cours {
 	public int getHeureFin() {
 		return heureDebut + duree;
 	}
-	public SuperClass getProf() {
-		return prof;
-	}
-	public void setProf(SuperClass prof) {
-		this.prof = prof;
-	}
-	public SuperClass getClasse() {
-		return classe;
-	}
-	public void setClasse(SuperClass classe) {
-		this.classe = classe;
-	}
-	public SuperClass getSalle() {
-		return salle;
-	}
-	public void setSalle(SuperClass salle) {
-		this.salle = salle;
-	}
 
 	public int getDuree() {
 		return duree;
@@ -86,5 +69,37 @@ public class Cours {
 
 	public void setDuree(int duree) {
 		this.duree = duree;
+	}
+
+	public Professeur getProf() {
+		return prof;
+	}
+
+	public void setProf(Professeur prof) {
+		this.prof = prof;
+	}
+
+	public Classe getClasse() {
+		return classe;
+	}
+
+	public void setClasse(Classe classe) {
+		this.classe = classe;
+	}
+
+	public Salle getSalle() {
+		return salle;
+	}
+
+	public void setSalle(Salle salle) {
+		this.salle = salle;
+	}
+
+	public Matiere getMatiere() {
+		return matiere;
+	}
+
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
 	}
 }

@@ -46,14 +46,12 @@ public class Main {
 		generator.setClasses(main.getClasses());
 		generator.setSalles(main.getSalles());
 		try {
-			generator.placerCours();
-			main.exportData();
+			generator.genererEmploiDuTemps();
 			
-	System.out.println(main.checkIntegrite());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		main.exportData();
 	}
 
 	public ArrayList<Classe> getClasses() {

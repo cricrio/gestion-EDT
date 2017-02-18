@@ -32,7 +32,7 @@ public class MainDump {
 			generator.setProfesseurs(ms.getProfesseurs());
 			generator.setClasses(ms.getClasses());
 			generator.setSalles(ms.getSalles());
-			generator.placerCours();
+			generator.genererEmploiDuTemps();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,8 +68,6 @@ public class MainDump {
 		getSalles().add(new Salle("IO2"));
 		getSalles().add(new Salle("IO3"));
 
-		// les classes doivent connaitre l'ensemble des salles
-		getClasses().get(0).setSalles(getSalles());
 		Matiere francais = new Matiere("francais", 3);
 		Matiere math = new Matiere("math", 3);
 		Matiere anglais = new Matiere("anglais", 3);
@@ -79,7 +77,7 @@ public class MainDump {
 		math.setProfesseur(profMath);
 
 		for (Classe classe : getClasses()) {
-			classe.initialize(nbJours, nbHeures, getClasses().size());
+			classe.initialize(nbJours, nbHeures);
 			classe.ajouterMatiere(math);
 			classe.ajouterMatiere(anglais);
 			classe.ajouterMatiere(francais);

@@ -39,14 +39,24 @@ public class ImportData {
 		importClassesJson();
 		setClasses();
 		initializeData();
+		showNombresImport();
 	}
 
+	private void showNombresImport() {
+		System.out.println("Importation faite");
+		System.out.println("classes ajoutées : " + classeJsons.size());
+		System.out.println("professeurs ajoutés : " + professeurs.size());
+		System.out.println("salles ajoutées : " + salles.size());
+		System.out.println();
+
+	}
+	
 	private void initializeData() {
 		try {
-			classes.get(0).setSalles(getSalles());
+			
 			for (Classe classe : classes) {
 				//
-				classe.initialize(nbJours, nbHeures,getClasses().size());
+				classe.initialize(nbJours, nbHeures);
 			}
 			for (Professeur professeur : professeurs) {
 				professeur.initialize(nbJours, nbHeures);
@@ -158,7 +168,6 @@ public class ImportData {
 	private String[] getFileFromFolder(String name) {
 		File folder = new File(name);
 		for (String dq : folder.list()) {
-			System.out.println(dq);
 		}
 		return folder.list();
 	}

@@ -39,7 +39,6 @@ public class Matiere {
 	}
 
 	public void decremanter() {
-		System.out.println(getNbHeure());
 		setNbHeure(getNbHeure() - 1);
 	}
 

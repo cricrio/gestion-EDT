@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import exception.DispoNonCommuneExeption;
+
 public abstract class SuperClass {
 	protected String nom;
 	private static final AtomicInteger COUNTER = new AtomicInteger();
@@ -22,7 +24,7 @@ public abstract class SuperClass {
 		edt.initialize(nbj, nbh);
 	}
 
-	void placerCours(Cours cours) {
+	public void placerCours(Cours cours) {
 		edt.placerCours(cours);
 	}
 
@@ -30,7 +32,7 @@ public abstract class SuperClass {
 		return edt.getDisponibilites();
 	}
 
-	public ArrayList<Disponibilite> getSharedDisponibilite(ArrayList<Disponibilite> dispoSource) throws Exception {
+	public ArrayList<Disponibilite> getSharedDisponibilite(ArrayList<Disponibilite> dispoSource) throws DispoNonCommuneExeption  {
 		return edt.getSharedDisponibilite(dispoSource);
 	}
 
