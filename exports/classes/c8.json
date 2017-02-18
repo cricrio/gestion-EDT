@@ -5,49 +5,41 @@
   "edt": [
     {
       "jourDebut": 0,
-      "heureDebut": 1,
-      "duree": 1,
+      "heureDebut": 0,
+      "duree": 0,
       "idprof": 4,
       "idclasse": 8,
       "idsalle": 3
     },
     {
-      "jourDebut": 1,
-      "heureDebut": 1,
-      "duree": 1,
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
       "idprof": 6,
       "idclasse": 8,
       "idsalle": 3
     },
     {
-      "jourDebut": 1,
-      "heureDebut": 3,
-      "duree": 1,
-      "idprof": 4,
-      "idclasse": 8,
-      "idsalle": 3
-    },
-    {
-      "jourDebut": 3,
+      "jourDebut": 0,
       "heureDebut": 0,
-      "duree": 1,
-      "idprof": 4,
-      "idclasse": 8,
-      "idsalle": 3
-    },
-    {
-      "jourDebut": 3,
-      "heureDebut": 2,
-      "duree": 1,
-      "idprof": 4,
-      "idclasse": 8,
-      "idsalle": 3
-    },
-    {
-      "jourDebut": 4,
-      "heureDebut": 0,
-      "duree": 1,
+      "duree": 0,
       "idprof": 6,
+      "idclasse": 8,
+      "idsalle": 3
+    },
+    {
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
+      "idprof": 4,
+      "idclasse": 8,
+      "idsalle": 3
+    },
+    {
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
+      "idprof": 4,
       "idclasse": 8,
       "idsalle": 3
     }
