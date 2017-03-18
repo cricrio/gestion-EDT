@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import models.Cours;
-import models.EDT;
+import main.java.models.Cours;
+import main.java.models.EDT;
 
 public class EDTTest {
 	EDT edt;

@@ -7,7 +7,7 @@
       "jourDebut": 0,
       "heureDebut": 0,
       "duree": 0,
-      "idprof": 4,
+      "idprof": 5,
       "idclasse": 9,
       "idsalle": 3
     },
@@ -31,7 +31,7 @@
       "jourDebut": 0,
       "heureDebut": 0,
       "duree": 0,
-      "idprof": 6,
+      "idprof": 4,
       "idclasse": 9,
       "idsalle": 3
     },
@@ -39,7 +39,7 @@
       "jourDebut": 0,
       "heureDebut": 0,
       "duree": 0,
-      "idprof": 6,
+      "idprof": 5,
       "idclasse": 9,
       "idsalle": 3
     }

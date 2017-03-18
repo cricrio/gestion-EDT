@@ -1,5 +1,5 @@
 {
-  "niveau": 3,
+  "niveau": 1,
   "id": 8,
   "matieres": [],
   "edt": [
@@ -7,7 +7,15 @@
       "jourDebut": 0,
       "heureDebut": 0,
       "duree": 0,
-      "idprof": 4,
+      "idprof": 6,
+      "idclasse": 8,
+      "idsalle": 3
+    },
+    {
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
+      "idprof": 6,
       "idclasse": 8,
       "idsalle": 3
     },
@@ -39,7 +47,23 @@
       "jourDebut": 0,
       "heureDebut": 0,
       "duree": 0,
-      "idprof": 6,
+      "idprof": 4,
+      "idclasse": 8,
+      "idsalle": 3
+    },
+    {
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
+      "idprof": 4,
+      "idclasse": 8,
+      "idsalle": 3
+    },
+    {
+      "jourDebut": 0,
+      "heureDebut": 0,
+      "duree": 0,
+      "idprof": 4,
       "idclasse": 8,
       "idsalle": 3
     }

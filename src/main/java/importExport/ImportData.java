@@ -1,4 +1,4 @@
-package importExport;
+package main.java.importExport;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,13 +10,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
-import models.Classe;
-import models.ClasseJson;
-import models.Matiere;
-import models.MatiereJSON;
-import models.Niveau;
-import models.Professeur;
-import models.Salle;
+import main.java.models.Classe;
+import main.java.models.ClasseJson;
+import main.java.models.Matiere;
+import main.java.models.MatiereJSON;
+import main.java.models.Niveau;
+import main.java.models.Professeur;
+import main.java.models.Salle;
 
 public class ImportData {
 	private Gson gson;

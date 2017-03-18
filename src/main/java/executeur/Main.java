@@ -1,21 +1,21 @@
-package executeur;
+package main.java.executeur;
 
 import java.util.ArrayList;
 
-import ent.GeneratorEDTs;
-import importExport.ExportData;
-import importExport.ImportData;
-import models.Classe;
-import models.Professeur;
-import models.Salle;
+import main.java.ent.GeneratorEDTs;
+import main.java.importExport.ExportData;
+import main.java.importExport.ImportData;
+import main.java.models.Classe;
+import main.java.models.Professeur;
+import main.java.models.Salle;
 
 public class Main {
 	private ArrayList<Classe> classes;
 	private ArrayList<Salle> salles; 
 	private ArrayList<Professeur> professeurs; 
 
-	public void  importData() {
-		ImportData importData = new ImportData("config");
+	public void  importData(String path) {
+		ImportData importData = new ImportData(path);
 
 		setClasses(importData.getClasses());
 		setProfesseurs(importData.getProfesseurs());
@@ -33,15 +33,29 @@ public class Main {
 		}
 		return true;
 	}
-	public void exportData() {
-		ExportData exportData = new ExportData("exports/");
+	public void exportData(String path) {
+		ExportData exportData = new ExportData(path);
 		exportData.exportClasses(classes);
+		exportData.exportProfs(professeurs);
+		exportData.exportSalles(salles);
 	}
 	
 	public static void main(String[] args) {
+		String importPath = "config";
+		String exportPath = "export";
+		
+		if(args.length == 2){
+			
+			importPath = args[0] +"/";
+			exportPath = args[1]+ "/";
+		}else{
+			System.out.println("working with default");
+		}
+		
+		
 		Main main = new Main();
 		GeneratorEDTs generator = new GeneratorEDTs();
-		main.importData();
+		main.importData(importPath);
 		generator.setProfesseurs(main.getProfesseurs());
 		generator.setClasses(main.getClasses());
 		generator.setSalles(main.getSalles());
@@ -51,7 +65,7 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		main.exportData();
+		main.exportData(exportPath);
 	}
 
 	public ArrayList<Classe> getClasses() {

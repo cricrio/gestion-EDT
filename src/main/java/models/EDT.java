@@ -1,8 +1,8 @@
-package models;
+package main.java.models;
 
 import java.util.ArrayList;
 
-import exception.DispoNonCommuneExeption;
+import main.java.exception.DispoNonCommuneExeption;
 
 public class EDT {
 	private ArrayList<Disponibilite> disponibilites = new ArrayList<Disponibilite>();

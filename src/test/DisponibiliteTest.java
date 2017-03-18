@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import models.Disponibilite;
+import main.java.models.Disponibilite;
 
 public class DisponibiliteTest {
 	Disponibilite dispo1;

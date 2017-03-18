@@ -1,7 +1,7 @@
-package models;
+package main.java.models;
 
-import exception.DispoNonCommuneExeption;
-import exception.DispoPasMemeJourException;
+import main.java.exception.DispoNonCommuneExeption;
+import main.java.exception.DispoPasMemeJourException;
 
 public class Disponibilite {
 	private int heureDebut;

@@ -1,16 +1,16 @@
-package ent;
+package main.java.ent;
 
 import java.util.ArrayList;
 
-import exception.AucuneSalleLibreException;
-import exception.DispoNonCommuneExeption;
-import models.Classe;
-import models.Cours;
-import models.Disponibilite;
-import models.Matiere;
-import models.Professeur;
-import models.Salle;
-import models.SalleAndDispo;
+import main.java.exception.AucuneSalleLibreException;
+import main.java.exception.DispoNonCommuneExeption;
+import main.java.models.Classe;
+import main.java.models.Cours;
+import main.java.models.Disponibilite;
+import main.java.models.Matiere;
+import main.java.models.Professeur;
+import main.java.models.Salle;
+import main.java.models.SalleAndDispo;
 
 /**
  * Réalise la génération de l'emploi du temps pour les classes, salles et

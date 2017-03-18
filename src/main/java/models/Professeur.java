@@ -1,4 +1,4 @@
-package models;
+package main.java.models;
 
 public class Professeur extends SuperClass {
 	private String matiereEnseigne;

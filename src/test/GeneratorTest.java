@@ -5,11 +5,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import ent.GeneratorEDTs;
-import executeur.MainDump;
-import models.Classe;
-import models.Professeur;
-import models.Salle;
+import main.java.ent.GeneratorEDTs;
+import main.java.executeur.MainDump;
+import main.java.models.Classe;
+import main.java.models.Professeur;
+import main.java.models.Salle;
 
 public class GeneratorTest {
 	GeneratorEDTs generator;

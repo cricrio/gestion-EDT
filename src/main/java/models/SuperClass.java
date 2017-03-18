@@ -1,9 +1,9 @@
-package models;
+package main.java.models;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import exception.DispoNonCommuneExeption;
+import main.java.exception.DispoNonCommuneExeption;
 
 public abstract class SuperClass {
 	protected String nom;

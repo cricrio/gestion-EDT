@@ -1,9 +1,9 @@
-package models;
+package main.java.models;
 
 import java.util.ArrayList;
 
-import exception.AucuneSalleLibreException;
-import exception.DispoNonCommuneExeption;
+import main.java.exception.AucuneSalleLibreException;
+import main.java.exception.DispoNonCommuneExeption;
 
 public class Classe extends SuperClass {
 	private ArrayList<Matiere> matieresAPlacer = new ArrayList<Matiere>();

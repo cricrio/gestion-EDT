@@ -1,14 +1,14 @@
-package executeur;
+package main.java.executeur;
 
 import java.util.ArrayList;
 
-import ent.GeneratorEDTs;
-import importExport.ExportData;
-import models.Classe;
-import models.Matiere;
-import models.Niveau;
-import models.Professeur;
-import models.Salle;
+import main.java.ent.GeneratorEDTs;
+import main.java.importExport.ExportData;
+import main.java.models.Classe;
+import main.java.models.Matiere;
+import main.java.models.Niveau;
+import main.java.models.Professeur;
+import main.java.models.Salle;
 
 /**
  * 
